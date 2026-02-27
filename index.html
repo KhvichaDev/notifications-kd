@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KD Notifications - Live Demo</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        .demo-container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+        }
+        h1 { margin-top: 0; color: #4da6ff; }
+        p { color: #666; margin-bottom: 30px; line-height: 1.6; }
+        .btn-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+        }
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+        button:hover { opacity: 0.9; transform: translateY(-2px); }
+        
+        .btn-info { background: #e3f2fd; color: #0d47a1; }
+        .btn-success { background: #e8f5e9; color: #1b5e20; }
+        .btn-warning { background: #fff8e1; color: #f57f17; }
+        .btn-error { background: #ffebee; color: #b71c1c; }
+        .btn-processing { background: #f3e5f5; color: #4a148c; }
+        .btn-modal { background: #2c2c2c; color: #fff; grid-column: 1 / -1; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="demo-container">
+        <h1>KD Notifications</h1>
+        <p>Zero-dependency, ultra-lightweight toast notification system. <br>Click the buttons below to see it in action.</p>
+        
+        <div class="btn-grid">
+            <button class="btn-info" onclick="showInfo()">Info (Top Right)</button>
+            <button class="btn-success" onclick="showSuccess()">Success (Top Left)</button>
+            <button class="btn-warning" onclick="showWarning()">Warning (Bottom Right)</button>
+            <button class="btn-error" onclick="showError()">Error (Bottom Left)</button>
+            <button class="btn-processing" onclick="showProcessing()">Processing (Center)</button>
+            <button class="btn-info" onclick="showRich()">Rich Text</button>
+            <button class="btn-modal" onclick="showModal()">Interactive Modal</button>
+        </div>
+    </div>
+
+    <script src="./notifications-kd.js"></script>
+    
+    <script>
+        function showInfo() {
+            KDNotification.show({ type: 'info', message: 'This is a standard informational message.', position: 'top-right' });
+        }
+        function showSuccess() {
+            KDNotification.show({ type: 'success', message: 'Operation completed successfully!', position: 'top-left' });
+        }
+        function showWarning() {
+            KDNotification.show({ type: 'warning', message: 'Warning! Something seems off, please check your parameters.', position: 'bottom-right' });
+        }
+        function showError() {
+            KDNotification.show({ type: 'error', message: 'Error! The system could not process your request.', position: 'bottom-left' });
+        }
+        function showProcessing() {
+            KDNotification.show({ type: 'processing', message: 'Processing your data, please wait...', duration: 2500, position: 'center' });
+        }
+        function showRich() {
+            KDNotification.show({ 
+                type: 'info', 
+                title: 'System Update',
+                message: 'Your profile has been successfully updated.',
+                duration: 4000,
+                position: 'top-right'
+            });
+        }
+        function showModal() {
+            KDNotification.show({
+                type: 'warning',
+                title: 'Delete File?',
+                message: 'Are you sure you want to delete this file? This action cannot be undone.',
+                isModal: true,
+                position: 'center',
+                buttons: [
+                    { text: 'Yes, Delete', className: 'kd-btn-danger', value: 'deleted' },
+                    { text: 'Cancel', value: 'cancelled' }
+                ]
+            }).then(res => {
+                if(res === 'deleted') {
+                    setTimeout(() => KDNotification.show({ type: 'success', message: 'File deleted successfully!', position: 'top-right' }), 300);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

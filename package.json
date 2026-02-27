@@ -1,0 +1,39 @@
+{
+  "name": "notifications-kd",
+  "version": "1.0.0",
+  "description": "A standalone, ultra-lightweight toast notification system with a modern, elegant UI and zero dependencies.",
+  "main": "notifications-kd.js",
+  "module": "notifications-kd.js",
+  "unpkg": "notifications-kd.min.js",
+  "jsdelivr": "notifications-kd.min.js",
+  "types": "index.d.ts",
+  "files": [
+    "notifications-kd.js",
+    "notifications-kd.min.js",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "build": "npx terser notifications-kd.js -o notifications-kd.min.js -c -m",
+    "prepublishOnly": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KhvichaDev/notifications-kd.git"
+  },
+  "keywords": [
+    "toast",
+    "notification",
+    "alert",
+    "modal",
+    "popup",
+    "zero-dependency",
+    "vanilla-js"
+  ],
+  "author": "KhvichaDev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KhvichaDev/notifications-kd/issues"
+  },
+  "homepage": "https://github.com/KhvichaDev/notifications-kd#readme"
+}
