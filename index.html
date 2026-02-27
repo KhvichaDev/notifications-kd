@@ -72,29 +72,56 @@
     
     <script>
         function showInfo() {
-            KDNotification.show({ type: 'info', message: 'This is a standard informational message.', position: 'top-right' });
+            KDNotification.show({
+                type: 'info',
+                message: 'This is a standard informational message.',
+                position: 'top-right'
+            });
         }
+
         function showSuccess() {
-            KDNotification.show({ type: 'success', message: 'Operation completed successfully!', position: 'top-left' });
+            KDNotification.show({
+                type: 'success',
+                message: 'Operation completed successfully!',
+                position: 'top-left'
+            });
         }
+
         function showWarning() {
-            KDNotification.show({ type: 'warning', message: 'Warning! Something seems off, please check your parameters.', position: 'bottom-right' });
+            KDNotification.show({
+                type: 'warning',
+                message: 'Warning! Something seems off, please check your parameters.',
+                position: 'bottom-right'
+            });
         }
+
         function showError() {
-            KDNotification.show({ type: 'error', message: 'Error! The system could not process your request.', position: 'bottom-left' });
+            KDNotification.show({
+                type: 'error',
+                message: 'Error! The system could not process your request.',
+                position: 'bottom-left'
+            });
         }
+
         function showProcessing() {
-            KDNotification.show({ type: 'processing', message: 'Processing your data, please wait...', duration: 2500, position: 'center' });
+            KDNotification.show({
+                type: 'processing',
+                message: 'Processing your data, please wait...',
+                duration: 2500,
+                position: 'center'
+            });
         }
+
         function showRich() {
-            KDNotification.show({ 
-                type: 'info', 
+            KDNotification.show({
+                type: 'info',
                 title: 'System Update',
                 message: 'Your profile has been successfully updated.',
                 duration: 4000,
                 position: 'center'
             });
         }
+
         function showModal() {
             KDNotification.show({
                 type: 'warning',
@@ -106,9 +133,15 @@
                     { text: 'Yes, Delete', className: 'kd-btn-danger', value: 'deleted' },
                     { text: 'Cancel', value: 'cancelled' }
                 ]
-            }).then(res => {
-                if(res === 'deleted') {
-                    setTimeout(() => KDNotification.show({ type: 'success', message: 'File deleted successfully!', position: 'top-right' }), 300);
+            }).then((res) => {
+                if (res === 'deleted') {
+                    setTimeout(() => {
+                        KDNotification.show({
+                            type: 'success',
+                            message: 'File deleted successfully!',
+                            position: 'top-right'
+                        });
+                    }, 300);
                 }
             });
         }
