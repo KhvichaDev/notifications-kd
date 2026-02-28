@@ -15,6 +15,11 @@
             margin: 0;
             background-color: #f0f2f5;
             color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        body.dark-mode {
+            background-color: #121212;
+            color: #e3e3e3;
         }
         .demo-container {
             background: #fff;
@@ -24,9 +29,15 @@
             text-align: center;
             max-width: 600px;
             width: 90%;
+            transition: background-color 0.3s;
+        }
+        body.dark-mode .demo-container {
+            background: #1e1e1e;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
         h1 { margin-top: 0; color: #4da6ff; }
         p { color: #666; margin-bottom: 30px; line-height: 1.6; }
+        body.dark-mode p { color: #aaa; }
         .btn-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -39,7 +50,7 @@
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s, opacity 0.2s;
+            transition: transform 0.2s, opacity 0.2s, background-color 0.2s;
         }
         button:hover { opacity: 0.9; transform: translateY(-2px); }
         
@@ -49,28 +60,40 @@
         .btn-error { background: #ffebee; color: #b71c1c; }
         .btn-processing { background: #f3e5f5; color: #4a148c; }
         .btn-modal { background: #2c2c2c; color: #fff; grid-column: 1 / -1; margin-top: 10px; }
-
-        hr { border: 0; height: 1px; background: #eee; margin: 40px 0; transition: background 0.3s; }
-        h2 { color: #4da6ff; font-size: 20px; margin-top: 0; margin-bottom: 20px; }
         
-        .theme-toggle-container {
+        body.dark-mode .btn-info { background: rgba(13, 71, 161, 0.3); color: #90caf9; }
+        body.dark-mode .btn-success { background: rgba(27, 94, 32, 0.3); color: #a5d6a7; }
+        body.dark-mode .btn-warning { background: rgba(245, 127, 23, 0.3); color: #ffe082; }
+        body.dark-mode .btn-error { background: rgba(183, 28, 28, 0.3); color: #ef9a9a; }
+        body.dark-mode .btn-processing { background: rgba(74, 20, 140, 0.3); color: #ce93d8; }
+        body.dark-mode .btn-modal { background: #444; color: #fff; }
+
+        .controls-panel {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid #eee;
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 25px;
+            flex-wrap: wrap;
         }
-        
-        .btn-theme { background: #e0e0e0; color: #333; }
-        .btn-theme.dark { background: #333; color: #fff; }
-
-        body { transition: background-color 0.3s, color 0.3s; }
-        .demo-container { transition: background-color 0.3s, box-shadow 0.3s; }
-
-        body.dark-mode { background-color: #121212; color: #e3e3e3; }
-        body.dark-mode .demo-container { background: #1e1e1e; box-shadow: 0 4px 30px rgba(0,0,0,0.6); }
-        body.dark-mode p { color: #aaa; }
-        body.dark-mode hr { background: #333; }
-        body.dark-mode .btn-modal { background: #e3e3e3; color: #2c2c2c; }
+        body.dark-mode .controls-panel { border-top-color: #333; }
+        .control-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #f5f5f5;
+            color: #555;
+            padding: 0;
+            border: 1px solid #e0e0e0;
+        }
+        body.dark-mode .control-btn { background: #2c2c2c; color: #bbb; border-color: #444; }
+        .control-btn:hover { background: #e0e0e0; transform: scale(1.05); color: #000; }
+        body.dark-mode .control-btn:hover { background: #3c3c3c; color: #fff; }
+        .control-btn svg { width: 22px; height: 22px; fill: currentColor; }
     </style>
 </head>
 <body>
@@ -80,93 +103,116 @@
         <p>Zero-dependency, ultra-lightweight toast notification system. <br>Click the buttons below to see it in action.</p>
         
         <div class="btn-grid">
-            <button class="btn-info" onclick="showInfo()">Info (Top Right)</button>
-            <button class="btn-success" onclick="showSuccess()">Success (Top Left)</button>
-            <button class="btn-warning" onclick="showWarning()">Warning (Bottom Right)</button>
-            <button class="btn-error" onclick="showError()">Error (Bottom Left)</button>
-            <button class="btn-processing" onclick="showProcessing()">Processing (Center)</button>
+            <button class="btn-info" onclick="showInfo()">Info</button>
+            <button class="btn-success" onclick="showSuccess()">Success</button>
+            <button class="btn-warning" onclick="showWarning()">Warning</button>
+            <button class="btn-error" onclick="showError()">Error</button>
+            <button class="btn-processing" onclick="showProcessing()">Processing</button>
             <button class="btn-info" onclick="showRich()">Rich Text</button>
             <button class="btn-modal" onclick="showModal()">Interactive Modal</button>
         </div>
 
-        <hr>
-
-        <h2>Theme & Position Testing</h2>
-        
-        <div class="theme-toggle-container">
-            <button class="btn-theme" onclick="setTheme('light')">☀️ Light Background</button>
-            <button class="btn-theme dark" onclick="setTheme('dark')">🌙 Dark Background</button>
-        </div>
-
-        <div class="btn-grid">
-            <button class="btn-success" onclick="showPosition('top-left')">Top Left</button>
-            <button class="btn-info" onclick="showPosition('top-right')">Top Right</button>
-            <button class="btn-error" onclick="showPosition('bottom-left')">Bottom Left</button>
-            <button class="btn-warning" onclick="showPosition('bottom-right')">Bottom Right</button>
+        <div class="controls-panel">
+            <button class="control-btn" onclick="toggleTheme()" title="Theme (Light/Dark)">
+                <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+            </button>
+            <button class="control-btn" onclick="updatePosition('top-left')" title="Top Left">
+                <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 0h8v8h-8z" opacity="0.3"/><path d="M3 3h8v8H3z"/></svg>
+            </button>
+            <button class="control-btn" onclick="updatePosition('top-right')" title="Top Right">
+                <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 0h8v8h-8z" opacity="0.3"/><path d="M13 3h8v8h-8z"/></svg>
+            </button>
+            <button class="control-btn" onclick="updatePosition('bottom-left')" title="Bottom Left">
+                <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 0h8v8h-8z" opacity="0.3"/><path d="M3 13h8v8H3z"/></svg>
+            </button>
+            <button class="control-btn" onclick="updatePosition('bottom-right')" title="Bottom Right">
+                <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 0h8v8h-8z" opacity="0.3"/><path d="M13 13h8v8h-8z"/></svg>
+            </button>
         </div>
     </div>
 
     <script src="./notifications-kd.js"></script>
     
     <script>
+        let currentNotificationConfig = null;
+
+        function triggerNotification(config) {
+            currentNotificationConfig = { ...config };
+            return KDNotification.show(config);
+        }
+
+        function updatePosition(pos) {
+            if (currentNotificationConfig) {
+                currentNotificationConfig.position = pos;
+                KDNotification.show(currentNotificationConfig);
+            } else {
+                triggerNotification({
+                    type: 'info',
+                    message: 'Select a notification first, or just enjoy this one!',
+                    position: pos
+                });
+            }
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+            if (currentNotificationConfig) {
+                KDNotification.show(currentNotificationConfig);
+            }
+        }
+
         function showInfo() {
-            KDNotification.show({
+            triggerNotification({
                 type: 'info',
-                message: 'This is a standard informational message.',
-                position: 'top-right'
+                message: 'This is a standard informational message.'
             });
         }
 
         function showSuccess() {
-            KDNotification.show({
+            triggerNotification({
                 type: 'success',
-                message: 'Operation completed successfully!',
-                position: 'top-left'
+                message: 'Operation completed successfully!'
             });
         }
 
         function showWarning() {
-            KDNotification.show({
+            triggerNotification({
                 type: 'warning',
-                message: 'Warning! Something seems off, please check your parameters.',
-                position: 'bottom-right'
+                message: 'Warning! Something seems off, please check your parameters.'
             });
         }
 
         function showError() {
-            KDNotification.show({
+            triggerNotification({
                 type: 'error',
-                message: 'Error! The system could not process your request.',
-                position: 'bottom-left'
+                message: 'Error! The system could not process your request.'
             });
         }
 
         function showProcessing() {
-            KDNotification.show({
+            triggerNotification({
                 type: 'processing',
                 message: 'Processing your data, please wait...',
-                duration: 2500,
-                position: 'center'
+                duration: 2500
             });
         }
 
         function showRich() {
-            KDNotification.show({
+            triggerNotification({
                 type: 'info',
                 title: 'System Update',
                 message: 'Your profile has been successfully updated.',
-                duration: 4000,
-                position: 'center'
+                duration: 4000
             });
         }
 
         function showModal() {
-            KDNotification.show({
+            triggerNotification({
                 type: 'warning',
                 title: 'Delete File?',
                 message: 'Are you sure you want to delete this file? This action cannot be undone.',
                 isModal: true,
-                position: 'center',
                 buttons: [
                     { text: 'Yes, Delete', className: 'kd-btn-danger', value: 'deleted' },
                     { text: 'Cancel', value: 'cancelled' }
@@ -174,41 +220,12 @@
             }).then((res) => {
                 if (res === 'deleted') {
                     setTimeout(() => {
-                        KDNotification.show({
+                        triggerNotification({
                             type: 'success',
-                            message: 'File deleted successfully!',
-                            position: 'top-right'
+                            message: 'File deleted successfully!'
                         });
                     }, 300);
                 }
-            });
-        }
-
-        function setTheme(theme) {
-            if (theme === 'dark') {
-                document.body.classList.add('dark-mode');
-                KDNotification.show({ 
-                    type: 'info', 
-                    message: 'Dark mode activated. The notification system has auto-adapted its colors!', 
-                    position: 'center' 
-                });
-            } else {
-                document.body.classList.remove('dark-mode');
-                KDNotification.show({ 
-                    type: 'info', 
-                    message: 'Light mode activated. The notification system has auto-adapted its colors!', 
-                    position: 'center' 
-                });
-            }
-        }
-
-        function showPosition(pos) {
-            KDNotification.show({
-                type: 'success',
-                title: 'Position Test',
-                message: `This notification successfully appeared at the ${pos} position.`,
-                position: pos,
-                duration: 2500
             });
         }
     </script>
