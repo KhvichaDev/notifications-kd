@@ -179,6 +179,37 @@
 
             @keyframes kd-spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
             .kd-anm-rotate { animation: kd-spin 1s linear infinite; transform-origin: center; }
+
+            @media (max-width: 600px) {
+                .kd-toast-overlay {
+                    --kd-toast-offset-x: 16px !important;
+                    --kd-toast-offset-y: 16px !important;
+                }
+                .kd-toast-overlay.kd-pos-top-left, 
+                .kd-toast-overlay.kd-pos-top-right {
+                    justify-content: center;
+                }
+                .kd-toast-overlay.kd-pos-bottom-left, 
+                .kd-toast-overlay.kd-pos-bottom-right {
+                    justify-content: center;
+                }
+                .kd-toast {
+                    min-width: 0;
+                    width: 100%;
+                    max-width: 100%;
+                    padding: 24px 20px;
+                }
+                .kd-toast.kd-type-info:has(.kd-toast-actions button) {
+                    padding: 24px 20px;
+                }
+                .kd-toast-actions {
+                    flex-direction: column;
+                    gap: 12px;
+                }
+                .kd-toast-actions button {
+                    width: 100%;
+                }
+            }
         `;
 
         const style = document.createElement('style');
