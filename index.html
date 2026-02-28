@@ -49,6 +49,28 @@
         .btn-error { background: #ffebee; color: #b71c1c; }
         .btn-processing { background: #f3e5f5; color: #4a148c; }
         .btn-modal { background: #2c2c2c; color: #fff; grid-column: 1 / -1; margin-top: 10px; }
+
+        hr { border: 0; height: 1px; background: #eee; margin: 40px 0; transition: background 0.3s; }
+        h2 { color: #4da6ff; font-size: 20px; margin-top: 0; margin-bottom: 20px; }
+        
+        .theme-toggle-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .btn-theme { background: #e0e0e0; color: #333; }
+        .btn-theme.dark { background: #333; color: #fff; }
+
+        body { transition: background-color 0.3s, color 0.3s; }
+        .demo-container { transition: background-color 0.3s, box-shadow 0.3s; }
+
+        body.dark-mode { background-color: #121212; color: #e3e3e3; }
+        body.dark-mode .demo-container { background: #1e1e1e; box-shadow: 0 4px 30px rgba(0,0,0,0.6); }
+        body.dark-mode p { color: #aaa; }
+        body.dark-mode hr { background: #333; }
+        body.dark-mode .btn-modal { background: #e3e3e3; color: #2c2c2c; }
     </style>
 </head>
 <body>
@@ -65,6 +87,22 @@
             <button class="btn-processing" onclick="showProcessing()">Processing (Center)</button>
             <button class="btn-info" onclick="showRich()">Rich Text</button>
             <button class="btn-modal" onclick="showModal()">Interactive Modal</button>
+        </div>
+
+        <hr>
+
+        <h2>Theme & Position Testing</h2>
+        
+        <div class="theme-toggle-container">
+            <button class="btn-theme" onclick="setTheme('light')">☀️ Light Background</button>
+            <button class="btn-theme dark" onclick="setTheme('dark')">🌙 Dark Background</button>
+        </div>
+
+        <div class="btn-grid">
+            <button class="btn-success" onclick="showPosition('top-left')">Top Left</button>
+            <button class="btn-info" onclick="showPosition('top-right')">Top Right</button>
+            <button class="btn-error" onclick="showPosition('bottom-left')">Bottom Left</button>
+            <button class="btn-warning" onclick="showPosition('bottom-right')">Bottom Right</button>
         </div>
     </div>
 
@@ -143,6 +181,34 @@
                         });
                     }, 300);
                 }
+            });
+        }
+
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                document.body.classList.add('dark-mode');
+                KDNotification.show({ 
+                    type: 'info', 
+                    message: 'Dark mode activated. The notification system has auto-adapted its colors!', 
+                    position: 'center' 
+                });
+            } else {
+                document.body.classList.remove('dark-mode');
+                KDNotification.show({ 
+                    type: 'info', 
+                    message: 'Light mode activated. The notification system has auto-adapted its colors!', 
+                    position: 'center' 
+                });
+            }
+        }
+
+        function showPosition(pos) {
+            KDNotification.show({
+                type: 'success',
+                title: 'Position Test',
+                message: `This notification successfully appeared at the ${pos} position.`,
+                position: pos,
+                duration: 2500
             });
         }
     </script>
