@@ -185,6 +185,9 @@
                     --kd-toast-offset-x: 10px !important;
                     --kd-toast-offset-y: 16px !important;
                 }
+                .kd-toast-overlay.kd-pos-center {
+                    padding: var(--kd-toast-offset-y) var(--kd-toast-offset-x);
+                }
                 .kd-toast-overlay.kd-pos-top-left, 
                 .kd-toast-overlay.kd-pos-top-right {
                     justify-content: center;
