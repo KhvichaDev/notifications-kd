@@ -93,6 +93,20 @@
         body.dark-mode .control-btn { background: #2c2c2c; color: #bbb; border-color: #444; }
         .control-btn:hover { background: #e0e0e0; transform: scale(1.05); color: #000; }
         body.dark-mode .control-btn:hover { background: #3c3c3c; color: #fff; }
+        
+        .control-btn.active {
+            border-color: #4da6ff;
+            color: #4da6ff;
+            background: #e3f2fd;
+            box-shadow: 0 0 0 2px rgba(77, 166, 255, 0.3);
+        }
+        body.dark-mode .control-btn.active {
+            border-color: #90caf9;
+            color: #90caf9;
+            background: rgba(144, 202, 249, 0.15);
+            box-shadow: 0 0 0 2px rgba(144, 202, 249, 0.3);
+        }
+
         .control-btn svg { width: 22px; height: 22px; fill: currentColor; }
     </style>
 </head>
@@ -116,16 +130,16 @@
             <button class="control-btn" onclick="toggleTheme()" title="Theme (Light/Dark)">
                 <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
             </button>
-            <button class="control-btn" onclick="updatePosition('top-left')" title="Top Left">
+            <button class="control-btn" data-pos="top-left" onclick="updatePosition('top-left')" title="Top Left">
                 <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 0h8v8h-8z" opacity="0.3"/><path d="M3 3h8v8H3z"/></svg>
             </button>
-            <button class="control-btn" onclick="updatePosition('top-right')" title="Top Right">
+            <button class="control-btn" data-pos="top-right" onclick="updatePosition('top-right')" title="Top Right">
                 <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 0h8v8h-8z" opacity="0.3"/><path d="M13 3h8v8h-8z"/></svg>
             </button>
-            <button class="control-btn" onclick="updatePosition('bottom-left')" title="Bottom Left">
+            <button class="control-btn" data-pos="bottom-left" onclick="updatePosition('bottom-left')" title="Bottom Left">
                 <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 0h8v8h-8z" opacity="0.3"/><path d="M3 13h8v8H3z"/></svg>
             </button>
-            <button class="control-btn" onclick="updatePosition('bottom-right')" title="Bottom Right">
+            <button class="control-btn" data-pos="bottom-right" onclick="updatePosition('bottom-right')" title="Bottom Right">
                 <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 0h8v8h-8z" opacity="0.3"/><path d="M13 13h8v8h-8z"/></svg>
             </button>
         </div>
@@ -134,24 +148,31 @@
     <script src="./notifications-kd.js"></script>
     
     <script>
-        let currentNotificationConfig = null;
+        let currentNotificationConfig = {
+            type: 'info',
+            message: 'This is a standard informational message.',
+            position: 'center'
+        };
 
         function triggerNotification(config) {
+            config.position = currentNotificationConfig.position;
             currentNotificationConfig = { ...config };
             return KDNotification.show(config);
         }
 
         function updatePosition(pos) {
-            if (currentNotificationConfig) {
-                currentNotificationConfig.position = pos;
-                KDNotification.show(currentNotificationConfig);
-            } else {
-                triggerNotification({
-                    type: 'info',
-                    message: 'Select a notification first, or just enjoy this one!',
-                    position: pos
-                });
+            currentNotificationConfig.position = pos;
+            
+            document.querySelectorAll('.control-btn[data-pos]').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            const activeBtn = document.querySelector(`.control-btn[data-pos="${pos}"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
             }
+
+            KDNotification.show(currentNotificationConfig);
         }
 
         function toggleTheme() {
@@ -162,11 +183,11 @@
             KDNotification.close();
 
             setTimeout(() => {
-                triggerNotification({
+                KDNotification.show({
                     type: 'success',
                     title: 'Theme Updated',
                     message: isDark ? 'Dark mode activated successfully.' : 'Light mode activated successfully.',
-                    position: currentNotificationConfig ? currentNotificationConfig.position : 'center'
+                    position: currentNotificationConfig.position
                 });
             }, 350);
         }
