@@ -1,3 +1,20 @@
+<!--
+    KD Notifications — Usage Reference
+
+    This file demonstrates the complete API of the KD Notifications library.
+    To integrate the library into your own project, include the script via a standard
+    script tag (<script src="notifications-kd.js">) and call KDNotification.show()
+    with a configuration object. The library is fully self-contained — it injects its
+    own styles and requires zero external CSS or dependencies.
+
+    Key API patterns demonstrated here:
+    - Basic toast types: info, success, warning, error, processing
+    - Custom title and duration via the "title" and "duration" options
+    - Position control via the "position" option (center, top-left, top-right, bottom-left, bottom-right)
+    - Interactive modals with custom buttons via "isModal" and "buttons" options
+    - Promise-based flow: KDNotification.show() returns a Promise that resolves with the clicked button's value
+    - Programmatic dismissal via KDNotification.close()
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,9 +52,10 @@
             background: #1e1e1e;
             box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
-        h1 { margin-top: 0; color: #4da6ff; }
-        p { color: #666; margin-bottom: 30px; line-height: 1.6; }
-        body.dark-mode p { color: #aaa; }
+        h1 { margin-top: 0; margin-bottom: 15px; color: #4da6ff; }
+        .desc-text { color: #666; margin: 0 0 5px 0; line-height: 1.6; }
+        .action-text { color: #666; margin: 0 0 30px 0; line-height: 1.6; }
+        body.dark-mode .desc-text, body.dark-mode .action-text { color: #aaa; }
         .btn-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -114,33 +132,37 @@
 
     <div class="demo-container">
         <h1>KD Notifications</h1>
-        <p>Zero-dependency, ultra-lightweight toast notification system. <br>Click the buttons below to see it in action.</p>
+        <p class="desc-text">Zero-dependency, ultra-lightweight toast notification system.</p>
+        <p class="action-text">Click the buttons below to see it in action.</p>
         
         <div class="btn-grid">
-            <button class="btn-info" onclick="showInfo()">Info</button>
-            <button class="btn-success" onclick="showSuccess()">Success</button>
-            <button class="btn-warning" onclick="showWarning()">Warning</button>
-            <button class="btn-error" onclick="showError()">Error</button>
-            <button class="btn-processing" onclick="showProcessing()">Processing</button>
-            <button class="btn-info" onclick="showRich()">Rich Text</button>
-            <button class="btn-modal" onclick="showModal()">Interactive Modal</button>
+            <button class="btn-info" id="btn-info">Info</button>
+            <button class="btn-success" id="btn-success">Success</button>
+            <button class="btn-warning" id="btn-warning">Warning</button>
+            <button class="btn-error" id="btn-error">Error</button>
+            <button class="btn-processing" id="btn-processing">Processing</button>
+            <button class="btn-info" id="btn-rich">Rich Text</button>
+            <button class="btn-modal" id="btn-modal">Interactive Modal</button>
         </div>
 
         <div class="controls-panel">
-            <button class="control-btn" onclick="toggleTheme()" title="Theme (Light/Dark)">
-                <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+            <button class="control-btn" id="btn-theme" title="Theme (Light/Dark)" aria-label="Toggle Light and Dark Theme">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
             </button>
-            <button class="control-btn" data-pos="top-left" onclick="updatePosition('top-left')" title="Top Left">
-                <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 0h8v8h-8z" opacity="0.3"/><path d="M3 3h8v8H3z"/></svg>
+            <button class="control-btn active" data-pos="center" title="Center" aria-label="Set notification position to Center">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 0h8v8h-8z" opacity="0.3"/><path d="M9 9h6v6H9z"/></svg>
             </button>
-            <button class="control-btn" data-pos="top-right" onclick="updatePosition('top-right')" title="Top Right">
-                <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 0h8v8h-8z" opacity="0.3"/><path d="M13 3h8v8h-8z"/></svg>
+            <button class="control-btn" data-pos="top-left" title="Top Left" aria-label="Set notification position to Top Left">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 0h8v8h-8z" opacity="0.3"/><path d="M3 3h8v8H3z"/></svg>
             </button>
-            <button class="control-btn" data-pos="bottom-left" onclick="updatePosition('bottom-left')" title="Bottom Left">
-                <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 0h8v8h-8z" opacity="0.3"/><path d="M3 13h8v8H3z"/></svg>
+            <button class="control-btn" data-pos="top-right" title="Top Right" aria-label="Set notification position to Top Right">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 0h8v8h-8z" opacity="0.3"/><path d="M13 3h8v8h-8z"/></svg>
             </button>
-            <button class="control-btn" data-pos="bottom-right" onclick="updatePosition('bottom-right')" title="Bottom Right">
-                <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 0h8v8h-8z" opacity="0.3"/><path d="M13 13h8v8h-8z"/></svg>
+            <button class="control-btn" data-pos="bottom-left" title="Bottom Left" aria-label="Set notification position to Bottom Left">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 0h8v8h-8z" opacity="0.3"/><path d="M3 13h8v8H3z"/></svg>
+            </button>
+            <button class="control-btn" data-pos="bottom-right" title="Bottom Right" aria-label="Set notification position to Bottom Right">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 0h8v8h-8z" opacity="0.3"/><path d="M13 13h8v8h-8z"/></svg>
             </button>
         </div>
     </div>
@@ -148,38 +170,40 @@
     <script src="./notifications-kd.js"></script>
     
     <script>
+
+        const TOAST_ANIMATION_MS = 300;
+        const THEME_TRANSITION_MS = 350;
+
         let currentNotificationConfig = {
             type: 'info',
             message: 'This is a standard informational message.',
             position: 'center'
         };
 
+        /** Merges the currently selected position into every notification config
+         * and delegates to KDNotification.show(), which is the library's single entry point */
         function triggerNotification(config) {
             config.position = currentNotificationConfig.position;
             currentNotificationConfig = { ...config };
             return KDNotification.show(config);
         }
 
+        /** Switches the notification position at runtime by passing the "position"
+         * option to KDNotification.show() and re-renders the last notification in place */
         function updatePosition(pos) {
             currentNotificationConfig.position = pos;
             
-            document.querySelectorAll('.control-btn[data-pos]').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
+            document.querySelectorAll('.control-btn[data-pos]').forEach(btn => btn.classList.remove('active'));
             const activeBtn = document.querySelector(`.control-btn[data-pos="${pos}"]`);
-            if (activeBtn) {
-                activeBtn.classList.add('active');
-            }
+            if (activeBtn) activeBtn.classList.add('active');
 
             KDNotification.show(currentNotificationConfig);
         }
 
+        /** Demonstrates KDNotification.close() for programmatic dismissal, followed
+         * by a delayed re-show to let the CSS theme transition finish cleanly */
         function toggleTheme() {
-            const body = document.body;
-            body.classList.toggle('dark-mode');
-            const isDark = body.classList.contains('dark-mode');
-            
+            const isDark = document.body.classList.toggle('dark-mode');
             KDNotification.close();
 
             setTimeout(() => {
@@ -189,7 +213,7 @@
                     message: isDark ? 'Dark mode activated successfully.' : 'Light mode activated successfully.',
                     position: currentNotificationConfig.position
                 });
-            }, 350);
+            }, THEME_TRANSITION_MS);
         }
 
         function showInfo() {
@@ -237,6 +261,9 @@
             });
         }
 
+        /** Demonstrates the Promise-based interactive modal API. Setting "isModal" to true
+         * enables a backdrop overlay, and "buttons" defines clickable actions whose "value"
+         * is resolved through the returned Promise when the user makes a choice */
         function showModal() {
             triggerNotification({
                 type: 'warning',
@@ -254,10 +281,29 @@
                             type: 'success',
                             message: 'File deleted successfully!'
                         });
-                    }, 300);
+                    }, TOAST_ANIMATION_MS);
                 }
-            });
+            }).catch(err => console.error('Notification error:', err));
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('btn-info').addEventListener('click', showInfo);
+            document.getElementById('btn-success').addEventListener('click', showSuccess);
+            document.getElementById('btn-warning').addEventListener('click', showWarning);
+            document.getElementById('btn-error').addEventListener('click', showError);
+            document.getElementById('btn-processing').addEventListener('click', showProcessing);
+            document.getElementById('btn-rich').addEventListener('click', showRich);
+            document.getElementById('btn-modal').addEventListener('click', showModal);
+
+            document.getElementById('btn-theme').addEventListener('click', toggleTheme);
+
+            document.querySelectorAll('.control-btn[data-pos]').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const pos = e.currentTarget.getAttribute('data-pos');
+                    updatePosition(pos);
+                });
+            });
+        });
     </script>
 </body>
 </html>

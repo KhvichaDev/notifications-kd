@@ -182,7 +182,7 @@
 
             @media (max-width: 600px) {
                 .kd-toast-overlay {
-                    --kd-toast-offset-x: 16px !important;
+                    --kd-toast-offset-x: 10px !important;
                     --kd-toast-offset-y: 16px !important;
                 }
                 .kd-toast-overlay.kd-pos-top-left, 
@@ -196,11 +196,12 @@
                 .kd-toast {
                     min-width: 0;
                     width: 100%;
-                    max-width: 100%;
+                    max-width: 420px;
                     padding: 24px 20px;
                 }
                 .kd-toast.kd-type-info:has(.kd-toast-actions button) {
                     padding: 24px 20px;
+                    max-width: 420px;
                 }
                 .kd-toast-actions {
                     flex-direction: column;
