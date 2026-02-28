@@ -48,6 +48,9 @@
                 --kd-toast-anim-duration: 250ms;
                 --kd-font-family: system-ui, -apple-system, sans-serif;
                 --kd-shadow-toast: 0 14px 40px rgba(0, 0, 0, 0.6);
+                --kd-mobile-offset-x: 12px;
+                --kd-mobile-offset-y: 16px;
+                --kd-mobile-max-width: 420px;
             }
 
             .kd-theme-light {
@@ -182,8 +185,8 @@
 
             @media (max-width: 600px) {
                 .kd-toast-overlay {
-                    --kd-toast-offset-x: 10px !important;
-                    --kd-toast-offset-y: 16px !important;
+                    --kd-toast-offset-x: var(--kd-mobile-offset-x) !important;
+                    --kd-toast-offset-y: var(--kd-mobile-offset-y) !important;
                 }
                 .kd-toast-overlay.kd-pos-center {
                     padding: var(--kd-toast-offset-y) var(--kd-toast-offset-x);
@@ -199,12 +202,12 @@
                 .kd-toast {
                     min-width: 0;
                     width: 100%;
-                    max-width: 420px;
+                    max-width: var(--kd-mobile-max-width);
                     padding: 24px 20px;
                 }
                 .kd-toast.kd-type-info:has(.kd-toast-actions button) {
                     padding: 24px 20px;
-                    max-width: 420px;
+                    max-width: var(--kd-mobile-max-width);
                 }
                 .kd-toast-actions {
                     flex-direction: column;
@@ -212,6 +215,7 @@
                 }
                 .kd-toast-actions button {
                     width: 100%;
+                    padding: 14px 24px;
                 }
             }
         `;
