@@ -217,6 +217,13 @@
                     width: 100%;
                     padding: 14px 24px;
                 }
+                .kd-toast-rich-icon { width: 48px; height: 48px; }
+                .kd-toast-rich-icon svg { width: 26px; height: 26px; }
+                .kd-toast-custom-icon { width: 50px; height: 50px; margin-bottom: 16px; }
+                .kd-toast-custom-icon svg { width: 28px; height: 28px; }
+                .kd-toast-rich-title { font-size: 18px; }
+                .kd-toast-rich-text { font-size: 15px; }
+                .kd-toast-text { font-size: 16px; }
             }
         `;
 
