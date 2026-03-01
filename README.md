@@ -2,7 +2,15 @@
 
 A highly optimized, ultra-lightweight toast notification system with a modern, elegant UI, fully responsive mobile support, and zero dependencies.
 
-[![KD Notifications Overview](./overview.png)](https://www.youtube.com/watch?v=svJaNMr9juw)
+<br>
+
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=svJaNMr9juw" target="_blank">
+    <img src="./overview.png" alt="KD Notifications Overview" style="width:100%; max-width:850px; border-radius:12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
+  </a>
+</div>
+
+<br>
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)](https://KhvichaDev.github.io/notifications-kd/) [![Changelog](https://img.shields.io/badge/Changelog-34A853?style=for-the-badge&logo=keepachangelog&logoColor=white)](https://github.com/KhvichaDev/notifications-kd/releases) [![Support](https://img.shields.io/badge/Support-EA4335?style=for-the-badge&logo=github&logoColor=white)](https://github.com/KhvichaDev/notifications-kd/issues)
 
