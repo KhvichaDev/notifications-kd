@@ -2,7 +2,7 @@
 
 A highly optimized, ultra-lightweight toast notification system with a modern, elegant UI, fully responsive mobile support, and zero dependencies.
 
-🔗 **[Live Demo](https://KhvichaDev.github.io/notifications-kd/)**
+🔗 **[Live Demo](https://KhvichaDev.github.io/notifications-kd/)** · 🛟 **[Support](https://github.com/KhvichaDev/notifications-kd/issues)**
 
 ## Installation
 
@@ -115,6 +115,10 @@ You can globally override default styles via the `:root` pseudo-class, or locall
 - `--kd-mobile-max-width`: Controls the maximum width of the toast on mobile devices (Default: `420px`).
 
 > 💡 **Best Practice:** It is strongly recommended to use the `style` API or CSS variables for customization. Please avoid targeting internal CSS classes directly in your stylesheet, as the internal HTML structure may evolve in future minor updates and could break your custom overrides.
+
+## Contact & Support
+
+If you have any questions, bug reports, or feature requests, please [open an issue](https://github.com/KhvichaDev/notifications-kd/issues) on the GitHub repository.
 
 ## License
 
