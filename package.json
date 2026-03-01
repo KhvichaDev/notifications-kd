@@ -1,7 +1,7 @@
 {
   "name": "notifications-kd",
-  "version": "1.0.0",
-  "description": "A standalone, ultra-lightweight toast notification system with a modern, elegant UI and zero dependencies.",
+  "version": "1.1.0",
+  "description": "A standalone, ultra-lightweight, responsive & mobile-friendly toast notification system with a modern, elegant UI and zero dependencies.",
   "main": "notifications-kd.js",
   "module": "notifications-kd.js",
   "unpkg": "notifications-kd.min.js",

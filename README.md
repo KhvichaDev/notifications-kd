@@ -1,6 +1,6 @@
 # KD Notifications (notifications-kd)
 
-A highly optimized, ultra-lightweight toast notification system with a modern, elegant UI and zero dependencies.
+A highly optimized, ultra-lightweight toast notification system with a modern, elegant UI, fully responsive mobile support, and zero dependencies.
 
 🔗 **[Live Demo](https://KhvichaDev.github.io/notifications-kd/)**
 
@@ -28,6 +28,7 @@ npm install notifications-kd
 - 🎨 **Auto-Theming**: Automatically detects host environment (Light/Dark mode) and adapts seamlessly.
 - 📍 **Smart Positioning**: Place toasts anywhere (center, top-left, bottom-right, etc.) with custom offsets.
 - ♿ **Accessible**: Full keyboard navigation (Tab-trapping) for modal states.
+- 📱 **Responsive & Mobile-Ready**: Fully adaptive layout that works flawlessly on phones, tablets, and desktops.
 - ⚡ **High Performance**: Optimized DOM manipulation, `O(1)` lookups, and strict memory management.
 
 ## Usage
@@ -109,6 +110,9 @@ You can globally override default styles via the `:root` pseudo-class, or locall
 
 - `--kd-toast-anim-duration`: Controls the enter/leave animation speed (Default: `250ms`).
 - `--kd-z-toast`: Controls the z-index of the toast overlay (Default: `2147483647`).
+- `--kd-mobile-offset-x`: Controls the horizontal distance from screen edges on mobile devices (Default: `12px`).
+- `--kd-mobile-offset-y`: Controls the vertical distance from screen edges on mobile devices (Default: `16px`).
+- `--kd-mobile-max-width`: Controls the maximum width of the toast on mobile devices (Default: `420px`).
 
 > 💡 **Best Practice:** It is strongly recommended to use the `style` API or CSS variables for customization. Please avoid targeting internal CSS classes directly in your stylesheet, as the internal HTML structure may evolve in future minor updates and could break your custom overrides.
 
