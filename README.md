@@ -2,7 +2,7 @@
 
 A highly optimized, ultra-lightweight toast notification system with a modern, elegant UI, fully responsive mobile support, and zero dependencies.
 
-🔗 **[Live Demo](https://KhvichaDev.github.io/notifications-kd/)** · 🛟 **[Support](https://github.com/KhvichaDev/notifications-kd/issues)**
+🔗 [![Live Demo](https://img.shields.io/badge/Live%20Demo-4da6ff?style=flat-square)](https://KhvichaDev.github.io/notifications-kd/) 🛟 [![Support](https://img.shields.io/badge/Support-24292e?style=flat-square)](https://github.com/KhvichaDev/notifications-kd/issues)
 
 ## Installation
 
