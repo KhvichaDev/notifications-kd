@@ -138,16 +138,23 @@
         .hero-pill {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 8px 18px;
+            gap: 6px;
+            padding: 6px 14px;
             border-radius: 9999px;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             letter-spacing: 0.3px;
             border: 1px solid rgba(255, 255, 255, 0.08);
             background: rgba(255, 255, 255, 0.04);
             backdrop-filter: blur(8px);
             transition: transform 0.2s ease, background 0.2s ease;
+        }
+        @media (min-width: 640px) {
+            .hero-pill {
+                gap: 8px;
+                padding: 8px 18px;
+                font-size: 13px;
+            }
         }
         .hero-pill:hover {
             transform: translateY(-2px);
@@ -161,9 +168,20 @@
             background: rgba(15, 23, 42, 0.06);
         }
         .hero-pill .pill-icon {
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
             flex-shrink: 0;
+        }
+        @media (min-width: 640px) {
+            .hero-pill .pill-icon {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        .mobile-nav-link.nav-active {
+            background-color: rgba(77, 166, 255, 0.12);
+            color: #4da6ff;
         }
     </style>
 </head>
@@ -176,7 +194,7 @@
                 <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shadow-lg shadow-primary/20">
                     <i data-lucide="bell" class="text-white w-5 h-5"></i>
                 </div>
-                <span class="font-extrabold text-xl tracking-tight text-slate-900 dark:text-white">KD <span class="text-primary">Notifications</span></span>
+                <span class="font-extrabold text-lg sm:text-xl tracking-tight leading-none text-slate-900 dark:text-white">KD <span class="text-primary">Notifications</span></span>
             </div>
 
             <div class="hidden md:flex items-center gap-8 text-sm font-medium">
@@ -185,7 +203,7 @@
                 <a href="#docs" class="hover:text-primary transition-colors">Docs</a>
             </div>
 
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-1.5 sm:gap-3">
                 <button onclick="toggleTheme()" class="p-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/5 transition-colors border border-black/5 dark:border-white/5" id="theme-btn" aria-label="Toggle theme">
                     <i data-lucide="sun" class="hidden dark:block w-5 h-5 text-yellow-400"></i>
                     <i data-lucide="moon" class="block dark:hidden w-5 h-5 text-slate-600"></i>
@@ -197,18 +215,18 @@
                 <a href="https://www.npmjs.com/package/notifications-kd" target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center gap-2 bg-red-500/10 text-red-500 px-4 py-2 rounded-xl text-sm font-bold hover:bg-red-500/20 transition-all border border-red-500/20" aria-label="View on npm">
                     <i data-lucide="package" class="w-4 h-4"></i> npm
                 </a>
-                <a href="https://github.com/KhvichaDev/notifications-kd" target="_blank" rel="noopener noreferrer" class="bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-2 rounded-xl text-sm font-bold hover:opacity-90 transition-opacity flex items-center gap-2" aria-label="View on GitHub">
+                <a href="https://github.com/KhvichaDev/notifications-kd" target="_blank" rel="noopener noreferrer" class="bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-2 rounded-xl text-sm font-bold hover:opacity-90 transition-opacity flex items-center gap-2 border border-slate-900 dark:border-white" aria-label="View on GitHub">
                     <i data-lucide="github" class="w-4 h-4"></i> <span class="hidden sm:inline">GitHub</span>
                 </a>
             </div>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden hidden border-t border-black/5 dark:border-white/5 bg-white/80 dark:bg-dark-900/80 backdrop-blur-lg">
-            <div class="px-4 py-4 flex flex-col gap-3">
-                <a href="#features" onclick="closeMobileMenu()" class="px-4 py-3 rounded-xl hover:bg-black/5 dark:hover:bg-white/5 font-medium transition-colors">Features</a>
-                <a href="#playground" onclick="closeMobileMenu()" class="px-4 py-3 rounded-xl hover:bg-black/5 dark:hover:bg-white/5 font-medium transition-colors">Playground</a>
-                <a href="#docs" onclick="closeMobileMenu()" class="px-4 py-3 rounded-xl hover:bg-black/5 dark:hover:bg-white/5 font-medium transition-colors">Docs</a>
-                <a href="https://www.npmjs.com/package/notifications-kd" target="_blank" rel="noopener noreferrer" class="sm:hidden px-4 py-3 rounded-xl hover:bg-black/5 dark:hover:bg-white/5 font-medium transition-colors flex items-center gap-2 text-red-500">
+        <div id="mobile-menu" class="md:hidden hidden border-t border-black/5 dark:border-white/5 bg-white/80 dark:bg-dark-900/80 backdrop-blur-lg shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
+            <div class="px-4 py-4 flex flex-col gap-2">
+                <a href="#features" onclick="closeMobileMenu()" class="mobile-nav-link px-4 py-3 rounded-xl hover:bg-primary/10 hover:text-primary active:bg-primary/20 active:text-primary font-medium transition-all">Features</a>
+                <a href="#playground" onclick="closeMobileMenu()" class="mobile-nav-link px-4 py-3 rounded-xl hover:bg-primary/10 hover:text-primary active:bg-primary/20 active:text-primary font-medium transition-all">Playground</a>
+                <a href="#docs" onclick="closeMobileMenu()" class="mobile-nav-link px-4 py-3 rounded-xl hover:bg-primary/10 hover:text-primary active:bg-primary/20 active:text-primary font-medium transition-all">Docs</a>
+                <a href="https://www.npmjs.com/package/notifications-kd" target="_blank" rel="noopener noreferrer" class="sm:hidden px-4 py-3 rounded-xl hover:bg-red-500/10 hover:text-red-500 active:bg-red-500/20 font-medium transition-all flex items-center gap-2 text-red-500">
                     <i data-lucide="package" class="w-4 h-4"></i> npm
                 </a>
             </div>
@@ -216,21 +234,21 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="pt-32 pb-20 px-4 overflow-hidden">
+    <section class="pt-24 sm:pt-32 pb-12 sm:pb-20 px-4 overflow-hidden">
         <div class="max-w-7xl mx-auto text-center relative">
             <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/10 blur-[120px] rounded-full pointer-events-none"></div>
 
             <a href="https://github.com/KhvichaDev/notifications-kd/releases" target="_blank" rel="noopener noreferrer" class="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-xs font-bold mb-6 tracking-widest uppercase hover:bg-primary/20 transition-colors" id="version-badge">See What's New →</a>
-            <h1 class="text-5xl md:text-7xl font-black text-slate-900 dark:text-white mb-6 leading-tight">
+            <h1 class="text-4xl sm:text-5xl md:text-7xl font-black text-slate-900 dark:text-white mb-6 leading-tight">
                 The last notifications library <br> <span class="text-primary italic">you'll ever need.</span>
             </h1>
-            <p class="max-w-2xl mx-auto text-lg text-slate-500 dark:text-slate-400 mb-8 leading-relaxed">
+            <p class="max-w-2xl mx-auto text-base sm:text-lg text-slate-500 dark:text-slate-400 mb-8 leading-relaxed">
                 Zero setup. Fully customizable. <span class="text-slate-800 dark:text-slate-200 font-semibold">It just works</span> — from React to plain HTML.
             </p>
 
 
             <!-- Hero Feature Pills -->
-            <div class="flex flex-wrap items-center justify-center gap-3 mb-8 max-w-3xl mx-auto">
+            <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-8 max-w-3xl mx-auto">
                 <span class="hero-pill text-emerald-600 dark:text-emerald-400">
                     <i data-lucide="unplug" class="pill-icon"></i> Zero Dependencies
                 </span>
@@ -251,17 +269,17 @@
                 </span>
             </div>
 
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#playground" class="w-full sm:w-auto bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-xl shadow-primary/20 transition-all flex items-center justify-center gap-2">
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-5 sm:gap-4">
+                <a href="#playground" class="w-full sm:w-auto bg-primary hover:bg-primary-dark text-white px-6 py-3.5 sm:px-8 sm:py-4 rounded-2xl font-bold text-base sm:text-lg shadow-md shadow-primary/20 sm:shadow-xl transition-all flex items-center justify-center gap-2">
                     <i data-lucide="rocket" class="w-5 h-5"></i> Try It Live
                 </a>
-                <a href="#docs" class="w-full sm:w-auto bg-slate-100 dark:bg-dark-800 hover:bg-slate-200 dark:hover:bg-dark-700 px-8 py-4 rounded-2xl font-bold text-lg transition-all border border-black/5 dark:border-white/5 flex items-center justify-center gap-2">
+                <a href="#docs" class="w-full sm:w-auto bg-slate-100 dark:bg-dark-800 hover:bg-slate-200 dark:hover:bg-dark-700 px-6 py-3.5 sm:px-8 sm:py-4 rounded-2xl font-bold text-base sm:text-lg transition-all border border-black/5 dark:border-white/5 flex items-center justify-center gap-2">
                     <i data-lucide="book-open" class="w-5 h-5"></i> Quick Start
                 </a>
             </div>
 
             <!-- Dashboard Preview -->
-            <div class="mt-20 glass rounded-3xl p-2 max-w-4xl mx-auto shadow-2xl relative fade-in-up">
+            <div class="mt-12 sm:mt-20 glass rounded-3xl p-2 max-w-4xl mx-auto shadow-2xl relative fade-in-up">
                 <div class="relative w-full aspect-[16/10] rounded-2xl overflow-hidden shadow-inner bg-slate-900">
                     <iframe 
                         class="absolute top-0 left-0 w-full h-full" 
@@ -277,68 +295,68 @@
     </section>
 
     <!-- Features Grid -->
-    <section id="features" class="py-24 bg-slate-50 dark:bg-dark-800/50">
+    <section id="features" class="py-12 sm:py-24 bg-slate-50 dark:bg-dark-800/50">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16 fade-in-up">
-                <h2 class="text-3xl font-black text-slate-900 dark:text-white mb-4">Why KD Notifications?</h2>
+            <div class="text-center mb-10 sm:mb-16 fade-in-up">
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mb-4">Why KD Notifications?</h2>
                 <div class="h-1.5 w-20 bg-primary mx-auto rounded-full"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="feature-card p-8 rounded-3xl bg-white dark:bg-dark-900 border border-black/5 dark:border-white/5 hover:shadow-xl fade-in-up">
-                    <div class="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="zap" class="text-blue-500 w-6 h-6"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                <div class="feature-card p-6 sm:p-8 rounded-3xl bg-white dark:bg-dark-900 border border-black/5 dark:border-white/5 hover:shadow-xl fade-in-up">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-4 sm:mb-6">
+                        <i data-lucide="zap" class="text-blue-500 w-5 h-5 sm:w-6 sm:h-6"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Lightweight & Fast</h3>
+                    <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2 sm:mb-3">Lightweight & Fast</h3>
                     <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">No dependencies, no external CSS. A fully self-contained library that injects its own styles and loads instantly.</p>
                 </div>
-                <div class="feature-card p-8 rounded-3xl bg-white dark:bg-dark-900 border border-black/5 dark:border-white/5 hover:shadow-xl fade-in-up">
-                    <div class="w-12 h-12 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="palette" class="text-purple-500 w-6 h-6"></i>
+                <div class="feature-card p-6 sm:p-8 rounded-3xl bg-white dark:bg-dark-900 border border-black/5 dark:border-white/5 hover:shadow-xl fade-in-up">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-4 sm:mb-6">
+                        <i data-lucide="palette" class="text-purple-500 w-5 h-5 sm:w-6 sm:h-6"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Fully Customizable</h3>
+                    <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2 sm:mb-3">Fully Customizable</h3>
                     <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Colors, positions, animations, icons, and themes — all configurable with CSS variables or the style API.</p>
                 </div>
-                <div class="feature-card p-8 rounded-3xl bg-white dark:bg-dark-900 border border-black/5 dark:border-white/5 hover:shadow-xl fade-in-up">
-                    <div class="w-12 h-12 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="shield-check" class="text-emerald-500 w-6 h-6"></i>
+                <div class="feature-card p-6 sm:p-8 rounded-3xl bg-white dark:bg-dark-900 border border-black/5 dark:border-white/5 hover:shadow-xl fade-in-up">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-4 sm:mb-6">
+                        <i data-lucide="shield-check" class="text-emerald-500 w-5 h-5 sm:w-6 sm:h-6"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">XSS Protected</h3>
+                    <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2 sm:mb-3">XSS Protected</h3>
                     <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Built-in DOM-based sanitization with strict whitelisting, SVG/Math blocking, and control-character filtering.</p>
                 </div>
-                <div class="feature-card p-8 rounded-3xl bg-white dark:bg-dark-900 border border-black/5 dark:border-white/5 hover:shadow-xl fade-in-up">
-                    <div class="w-12 h-12 bg-amber-500/10 rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="sun-moon" class="text-amber-500 w-6 h-6"></i>
+                <div class="feature-card p-6 sm:p-8 rounded-3xl bg-white dark:bg-dark-900 border border-black/5 dark:border-white/5 hover:shadow-xl fade-in-up">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-amber-500/10 rounded-2xl flex items-center justify-center mb-4 sm:mb-6">
+                        <i data-lucide="sun-moon" class="text-amber-500 w-5 h-5 sm:w-6 sm:h-6"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Smart Auto-Theming</h3>
+                    <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2 sm:mb-3">Smart Auto-Theming</h3>
                     <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Automatically detects your page's background color and system preferences to match Light or Dark mode seamlessly.</p>
                 </div>
-                <div class="feature-card p-8 rounded-3xl bg-white dark:bg-dark-900 border border-black/5 dark:border-white/5 hover:shadow-xl fade-in-up">
-                    <div class="w-12 h-12 bg-indigo-500/10 rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="accessibility" class="text-indigo-500 w-6 h-6"></i>
+                <div class="feature-card p-6 sm:p-8 rounded-3xl bg-white dark:bg-dark-900 border border-black/5 dark:border-white/5 hover:shadow-xl fade-in-up">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-indigo-500/10 rounded-2xl flex items-center justify-center mb-4 sm:mb-6">
+                        <i data-lucide="accessibility" class="text-indigo-500 w-5 h-5 sm:w-6 sm:h-6"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">WCAG Accessible</h3>
+                    <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2 sm:mb-3">WCAG Accessible</h3>
                     <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Focus trap, automatic focus restoration, Esc-key dismiss, and prefers-reduced-motion integration out of the box.</p>
                 </div>
-                <div class="feature-card p-8 rounded-3xl bg-white dark:bg-dark-900 border border-black/5 dark:border-white/5 hover:shadow-xl fade-in-up">
-                    <div class="w-12 h-12 bg-pink-500/10 rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="smartphone" class="text-pink-500 w-6 h-6"></i>
+                <div class="feature-card p-6 sm:p-8 rounded-3xl bg-white dark:bg-dark-900 border border-black/5 dark:border-white/5 hover:shadow-xl fade-in-up">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-pink-500/10 rounded-2xl flex items-center justify-center mb-4 sm:mb-6">
+                        <i data-lucide="smartphone" class="text-pink-500 w-5 h-5 sm:w-6 sm:h-6"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Mobile-Ready</h3>
+                    <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2 sm:mb-3">Mobile-Ready</h3>
                     <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Fully responsive layout with native Safe Area support for notches, Dynamic Island, and all modern screen cutouts.</p>
                 </div>
-                <div class="feature-card p-8 rounded-3xl bg-white dark:bg-dark-900 border border-black/5 dark:border-white/5 hover:shadow-xl fade-in-up">
-                    <div class="w-12 h-12 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="git-branch" class="text-cyan-500 w-6 h-6"></i>
+                <div class="feature-card p-6 sm:p-8 rounded-3xl bg-white dark:bg-dark-900 border border-black/5 dark:border-white/5 hover:shadow-xl fade-in-up">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-4 sm:mb-6">
+                        <i data-lucide="git-branch" class="text-cyan-500 w-5 h-5 sm:w-6 sm:h-6"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Promise-Based API</h3>
+                    <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2 sm:mb-3">Promise-Based API</h3>
                     <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Every notification returns a Promise. Build interactive confirmation dialogs with async/await or .then() chains.</p>
                 </div>
-                <div class="feature-card p-8 rounded-3xl bg-white dark:bg-dark-900 border border-black/5 dark:border-white/5 hover:shadow-xl fade-in-up">
-                    <div class="w-12 h-12 bg-rose-500/10 rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="map-pin" class="text-rose-500 w-6 h-6"></i>
+                <div class="feature-card p-6 sm:p-8 rounded-3xl bg-white dark:bg-dark-900 border border-black/5 dark:border-white/5 hover:shadow-xl fade-in-up">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-rose-500/10 rounded-2xl flex items-center justify-center mb-4 sm:mb-6">
+                        <i data-lucide="map-pin" class="text-rose-500 w-5 h-5 sm:w-6 sm:h-6"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Smart Positioning</h3>
+                    <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2 sm:mb-3">Smart Positioning</h3>
                     <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Place toasts anywhere on screen with strict CSS unit validation for custom offsets (px, em, rem, vh, vw).</p>
                 </div>
             </div>
@@ -346,55 +364,67 @@
     </section>
 
     <!-- Interactive Playground -->
-    <section id="playground" class="py-24 px-4">
+    <section id="playground" class="py-12 sm:py-24 px-4">
         <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row items-end justify-between mb-12 gap-4 fade-in-up">
+            <div class="flex flex-col md:flex-row items-end justify-between mb-8 sm:mb-12 gap-4 fade-in-up">
                 <div class="text-left">
-                    <h2 class="text-4xl font-black text-slate-900 dark:text-white mb-2">Interactive Playground 🧪</h2>
-                    <p class="text-slate-500">Configure, preview, and copy ready-to-use code — use it directly in your project</p>
+                    <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white mb-2">Interactive Playground 🧪</h2>
+                    <p class="text-sm sm:text-base text-slate-500 dark:text-slate-400 leading-relaxed max-w-xl">Configure, preview, and copy ready-to-use code — use it directly in your project</p>
                 </div>
-                <div class="flex gap-2 p-1 bg-slate-100 dark:bg-dark-800 rounded-2xl border border-black/5 dark:border-white/5">
-                    <button onclick="changePlaygroundTheme('auto')" class="playground-theme-btn active px-4 py-2 rounded-xl text-xs font-bold transition-all">AUTO</button>
-                    <button onclick="changePlaygroundTheme('light')" class="playground-theme-btn px-4 py-2 rounded-xl text-xs font-bold transition-all">LIGHT</button>
-                    <button onclick="changePlaygroundTheme('dark')" class="playground-theme-btn px-4 py-2 rounded-xl text-xs font-bold transition-all">DARK</button>
+                <div class="hidden md:flex flex-col items-start gap-2">
+                    <span class="text-[10px] font-black uppercase tracking-widest text-primary ml-2">Playground Theme</span>
+                    <div class="flex gap-2 p-1 bg-slate-100 dark:bg-dark-800 rounded-2xl border border-black/5 dark:border-white/5">
+                        <button onclick="changePlaygroundTheme('auto')" class="playground-theme-btn active px-4 py-2 rounded-xl text-xs font-bold transition-all">AUTO</button>
+                        <button onclick="changePlaygroundTheme('light')" class="playground-theme-btn px-4 py-2 rounded-xl text-xs font-bold transition-all">LIGHT</button>
+                        <button onclick="changePlaygroundTheme('dark')" class="playground-theme-btn px-4 py-2 rounded-xl text-xs font-bold transition-all">DARK</button>
+                    </div>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-8">
                 <!-- Controls -->
-                <div class="lg:col-span-5 space-y-6">
+                <div class="lg:col-span-5 space-y-4 sm:space-y-6">
+                    <!-- Playground Theme (Mobile) -->
+                    <div class="md:hidden p-5 sm:p-6 rounded-3xl glass fade-in-up">
+                        <label class="text-[10px] font-black uppercase tracking-widest text-primary mb-3 sm:mb-4 block">Playground Theme</label>
+                        <div class="grid grid-cols-3 gap-2 p-1 bg-slate-100 dark:bg-dark-800 rounded-2xl border border-black/5 dark:border-white/5">
+                            <button onclick="changePlaygroundTheme('auto')" class="playground-theme-btn active px-2 py-2 rounded-xl text-xs font-bold transition-all">AUTO</button>
+                            <button onclick="changePlaygroundTheme('light')" class="playground-theme-btn px-2 py-2 rounded-xl text-xs font-bold transition-all">LIGHT</button>
+                            <button onclick="changePlaygroundTheme('dark')" class="playground-theme-btn px-2 py-2 rounded-xl text-xs font-bold transition-all">DARK</button>
+                        </div>
+                    </div>
                     <!-- Notification Type -->
-                    <div class="p-6 rounded-3xl glass fade-in-up">
-                        <label class="text-[10px] font-black uppercase tracking-widest text-primary mb-4 block">Notification Type</label>
-                        <div class="grid grid-cols-2 gap-3">
-                            <button onclick="demo('success', this)" class="type-btn active p-4 rounded-2xl bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 font-bold text-sm hover:bg-emerald-500/20 transition-all">Success</button>
-                            <button onclick="demo('error', this)" class="type-btn p-4 rounded-2xl bg-red-500/10 text-red-500 border border-red-500/20 font-bold text-sm hover:bg-red-500/20 transition-all">Error</button>
-                            <button onclick="demo('warning', this)" class="type-btn p-4 rounded-2xl bg-amber-500/10 text-amber-500 border border-amber-500/20 font-bold text-sm hover:bg-amber-500/20 transition-all">Warning</button>
-                            <button onclick="demo('info', this)" class="type-btn p-4 rounded-2xl bg-blue-500/10 text-blue-500 border border-blue-500/20 font-bold text-sm hover:bg-blue-500/20 transition-all">Info</button>
-                            <button onclick="demo('rich', this)" class="type-btn p-4 rounded-2xl bg-violet-500/10 text-violet-500 border border-violet-500/20 font-bold text-sm hover:bg-violet-500/20 transition-all flex items-center justify-center gap-2">
+                    <div class="p-5 sm:p-6 rounded-3xl glass fade-in-up">
+                        <label class="text-[10px] font-black uppercase tracking-widest text-primary mb-3 sm:mb-4 block">Notification Type</label>
+                        <div class="grid grid-cols-2 gap-2 sm:gap-3">
+                            <button onclick="demo('success', this)" class="type-btn active p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 font-bold text-sm hover:bg-emerald-500/20 transition-all">Success</button>
+                            <button onclick="demo('error', this)" class="type-btn p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-red-500/10 text-red-500 border border-red-500/20 font-bold text-sm hover:bg-red-500/20 transition-all">Error</button>
+                            <button onclick="demo('warning', this)" class="type-btn p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-amber-500/10 text-amber-500 border border-amber-500/20 font-bold text-sm hover:bg-amber-500/20 transition-all">Warning</button>
+                            <button onclick="demo('info', this)" class="type-btn p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-blue-500/10 text-blue-500 border border-blue-500/20 font-bold text-sm hover:bg-blue-500/20 transition-all">Info</button>
+                            <button onclick="demo('rich', this)" class="type-btn p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-violet-500/10 text-violet-500 border border-violet-500/20 font-bold text-sm hover:bg-violet-500/20 transition-all flex items-center justify-center gap-2">
                                 <i data-lucide="layout" class="w-4 h-4"></i> Rich Text
                             </button>
-                            <button onclick="demo('processing', this)" class="type-btn p-4 rounded-2xl bg-cyan-500/10 text-cyan-500 border border-cyan-500/20 font-bold text-sm hover:bg-cyan-500/20 transition-all flex items-center justify-center gap-2">
+                            <button onclick="demo('processing', this)" class="type-btn p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-cyan-500/10 text-cyan-500 border border-cyan-500/20 font-bold text-sm hover:bg-cyan-500/20 transition-all flex items-center justify-center gap-2">
                                 <i data-lucide="loader" class="w-4 h-4"></i> Processing
                             </button>
-                            <button onclick="demo('modal', this)" class="type-btn col-span-2 p-4 rounded-2xl bg-primary/10 text-primary border border-primary/20 font-bold text-sm hover:bg-primary/20 transition-all flex items-center justify-center gap-2">
+                            <button onclick="demo('modal', this)" class="type-btn col-span-2 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-primary/10 text-primary border border-primary/20 font-bold text-sm hover:bg-primary/20 transition-all flex items-center justify-center gap-2">
                                 <i data-lucide="message-square" class="w-4 h-4"></i> Modal Dialog
                             </button>
                         </div>
                     </div>
 
                     <!-- Custom Text -->
-                    <div class="p-6 rounded-3xl glass fade-in-up">
-                        <label class="text-[10px] font-black uppercase tracking-widest text-primary mb-4 block">Custom Text</label>
-                        <div class="space-y-3">
+                    <div class="p-5 sm:p-6 rounded-3xl glass fade-in-up">
+                        <label class="text-[10px] font-black uppercase tracking-widest text-primary mb-3 sm:mb-4 block">Custom Text</label>
+                        <div class="space-y-2 sm:space-y-3">
                             <input type="text" id="pg-title" placeholder="Title (optional — leave empty for simple layout)" value="" class="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all placeholder:text-slate-400" oninput="userModifiedTitle = true; syncInputToOptions()">
                             <input type="text" id="pg-message" placeholder="Message" value="Data synced successfully!" class="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all placeholder:text-slate-400" oninput="userModifiedMessage = true; syncInputToOptions()">
                         </div>
                     </div>
 
                     <!-- Duration -->
-                    <div class="p-6 rounded-3xl glass fade-in-up">
-                        <div class="flex items-center justify-between mb-3">
+                    <div class="p-5 sm:p-6 rounded-3xl glass fade-in-up">
+                        <div class="flex items-center justify-between mb-2 sm:mb-3">
                             <label class="text-[10px] font-black uppercase tracking-widest text-primary">Duration</label>
                             <span id="duration-val" class="text-xs font-bold text-primary">3000ms</span>
                         </div>
@@ -402,14 +432,14 @@
                     </div>
 
                     <!-- Screen Position -->
-                    <div class="p-6 rounded-3xl glass fade-in-up">
-                        <label class="text-[10px] font-black uppercase tracking-widest text-primary mb-6 block">Screen Position</label>
-                        <div class="grid grid-cols-2 gap-3 mx-auto">
-                            <button data-pos="top-left" onclick="updatePos('top-left', this)" class="pos-grid-btn p-4 rounded-2xl border border-black/10 dark:border-white/10 hover:border-primary/40 transition-all flex items-center justify-center"><i data-lucide="arrow-up-left" class="w-5 h-5"></i></button>
-                            <button data-pos="top-right" onclick="updatePos('top-right', this)" class="pos-grid-btn p-4 rounded-2xl border border-black/10 dark:border-white/10 hover:border-primary/40 transition-all flex items-center justify-center"><i data-lucide="arrow-up-right" class="w-5 h-5"></i></button>
-                            <button data-pos="center" onclick="updatePos('center', this)" class="pos-grid-btn col-span-2 justify-self-center p-4 rounded-2xl border border-black/10 dark:border-white/10 hover:border-primary/40 transition-all flex items-center justify-center active" style="width:calc(50% - 6px)"><i data-lucide="maximize" class="w-5 h-5"></i></button>
-                            <button data-pos="bottom-left" onclick="updatePos('bottom-left', this)" class="pos-grid-btn p-4 rounded-2xl border border-black/10 dark:border-white/10 hover:border-primary/40 transition-all flex items-center justify-center"><i data-lucide="arrow-down-left" class="w-5 h-5"></i></button>
-                            <button data-pos="bottom-right" onclick="updatePos('bottom-right', this)" class="pos-grid-btn p-4 rounded-2xl border border-black/10 dark:border-white/10 hover:border-primary/40 transition-all flex items-center justify-center"><i data-lucide="arrow-down-right" class="w-5 h-5"></i></button>
+                    <div class="p-5 sm:p-6 rounded-3xl glass fade-in-up">
+                        <label class="text-[10px] font-black uppercase tracking-widest text-primary mb-4 sm:mb-6 block">Screen Position</label>
+                        <div class="grid grid-cols-2 gap-2 sm:gap-3 mx-auto max-w-[200px] sm:max-w-none">
+                            <button data-pos="top-left" onclick="updatePos('top-left', this)" class="pos-grid-btn p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-black/10 dark:border-white/10 hover:border-primary/40 transition-all flex items-center justify-center"><i data-lucide="arrow-up-left" class="w-5 h-5"></i></button>
+                            <button data-pos="top-right" onclick="updatePos('top-right', this)" class="pos-grid-btn p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-black/10 dark:border-white/10 hover:border-primary/40 transition-all flex items-center justify-center"><i data-lucide="arrow-up-right" class="w-5 h-5"></i></button>
+                            <button data-pos="center" onclick="updatePos('center', this)" class="pos-grid-btn col-span-2 justify-self-center p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-black/10 dark:border-white/10 hover:border-primary/40 transition-all flex items-center justify-center active" style="width:calc(50% - 4px)"><i data-lucide="maximize" class="w-5 h-5"></i></button>
+                            <button data-pos="bottom-left" onclick="updatePos('bottom-left', this)" class="pos-grid-btn p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-black/10 dark:border-white/10 hover:border-primary/40 transition-all flex items-center justify-center"><i data-lucide="arrow-down-left" class="w-5 h-5"></i></button>
+                            <button data-pos="bottom-right" onclick="updatePos('bottom-right', this)" class="pos-grid-btn p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-black/10 dark:border-white/10 hover:border-primary/40 transition-all flex items-center justify-center"><i data-lucide="arrow-down-right" class="w-5 h-5"></i></button>
                         </div>
                     </div>
                 </div>
@@ -417,13 +447,13 @@
                 <!-- Live Code Viewer -->
                 <div class="lg:col-span-7 flex flex-col fade-in-up">
                     <div class="flex-grow rounded-3xl bg-[#0d1117] overflow-hidden flex flex-col shadow-2xl">
-                        <div class="bg-slate-800/50 px-6 py-4 border-b border-white/5 flex items-center justify-between">
+                        <div class="bg-slate-800/50 px-4 py-3 sm:px-6 sm:py-4 border-b border-white/5 flex items-center justify-between">
                             <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">JavaScript Implementation</span>
                             <button onclick="copyCode(this)" class="text-slate-400 hover:text-white transition-colors flex items-center gap-2 text-xs font-bold" aria-label="Copy code">
                                 <i data-lucide="copy" class="w-4 h-4"></i> <span>COPY</span>
                             </button>
                         </div>
-                        <div class="p-8 font-mono text-sm leading-relaxed overflow-x-auto text-slate-300">
+                        <div class="p-5 sm:p-8 font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto text-slate-300">
                             <pre id="code-output"></pre>
                         </div>
                     </div>
@@ -433,14 +463,14 @@
     </section>
 
     <!-- Installation & Docs -->
-    <section id="docs" class="py-24 bg-slate-50 dark:bg-dark-800/30">
+    <section id="docs" class="py-12 sm:py-24 bg-slate-50 dark:bg-dark-800/30">
         <div class="max-w-5xl mx-auto px-4">
-            <h2 class="text-3xl font-black text-slate-900 dark:text-white mb-12 text-center fade-in-up">Quick Start Guide</h2>
+            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mb-8 sm:mb-12 text-center fade-in-up">Quick Start Guide</h2>
 
-            <div class="space-y-12">
+            <div class="space-y-8 sm:space-y-12">
                 <!-- NPM -->
                 <div class="relative fade-in-up">
-                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
                         <i data-lucide="package" class="text-primary w-5 h-5"></i> NPM (Recommended)
                     </h3>
                     <div class="bg-slate-900 text-white p-6 rounded-2xl font-mono text-sm flex items-center justify-between group">
@@ -451,12 +481,12 @@
 
                 <!-- CDN -->
                 <div class="relative fade-in-up">
-                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
                         <i data-lucide="globe" class="text-primary w-5 h-5"></i> CDN (Direct Browser Usage)
                     </h3>
                     <div class="space-y-4">
                         <div>
-                            <p class="text-xs font-bold text-slate-500 mb-2 ml-4 uppercase tracking-wider">jsDelivr</p>
+                            <p class="text-[10px] sm:text-xs font-normal sm:font-bold text-slate-500 mb-2 ml-4 uppercase tracking-wider">jsDelivr</p>
                             <div class="bg-slate-900 text-white p-5 rounded-2xl font-mono text-xs flex items-center justify-between group border border-white/5 overflow-x-auto">
                                 <span class="whitespace-nowrap pr-4">&lt;script <span class="text-blue-400">src</span>=<span class="text-emerald-400">"https://cdn.jsdelivr.net/npm/notifications-kd"</span>&gt;&lt;/script&gt;</span>
                                 <button onclick="copyText('<script src=\'https://cdn.jsdelivr.net/npm/notifications-kd\'></script>', this)" class="opacity-0 group-hover:opacity-100 transition-opacity p-2 bg-white/10 hover:bg-white/20 rounded-lg shrink-0 text-slate-300 hover:text-white" aria-label="Copy jsDelivr CDN">
@@ -465,7 +495,7 @@
                             </div>
                         </div>
                         <div>
-                            <p class="text-xs font-bold text-slate-500 mb-2 ml-4 uppercase tracking-wider">unpkg</p>
+                            <p class="text-[10px] sm:text-xs font-normal sm:font-bold text-slate-500 mb-2 ml-4 uppercase tracking-wider">unpkg</p>
                             <div class="bg-slate-900 text-white p-5 rounded-2xl font-mono text-xs flex items-center justify-between group border border-white/5 overflow-x-auto">
                                 <span class="whitespace-nowrap pr-4">&lt;script <span class="text-blue-400">src</span>=<span class="text-emerald-400">"https://unpkg.com/notifications-kd"</span>&gt;&lt;/script&gt;</span>
                                 <button onclick="copyText('<script src=\'https://unpkg.com/notifications-kd\'></script>', this)" class="opacity-0 group-hover:opacity-100 transition-opacity p-2 bg-white/10 hover:bg-white/20 rounded-lg shrink-0 text-slate-300 hover:text-white" aria-label="Copy unpkg CDN">
@@ -478,12 +508,12 @@
 
                 <!-- ES Module Import -->
                 <div class="relative fade-in-up">
-                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
                         <i data-lucide="file-code" class="text-primary w-5 h-5"></i> ES Module Import
                     </h3>
                     <div class="space-y-4">
                         <div>
-                            <p class="text-xs font-bold text-slate-500 mb-2 ml-4 uppercase tracking-wider">Modern bundlers (Webpack, Vite, React, Vue)</p>
+                            <p class="text-[10px] sm:text-xs font-normal sm:font-bold text-slate-500 mb-2 ml-4 uppercase tracking-wider">Modern bundlers (Webpack, Vite, React, Vue)</p>
                             <div class="bg-slate-900 text-white p-5 rounded-2xl font-mono text-sm flex items-center justify-between group border border-white/5 overflow-x-auto">
                                 <span class="whitespace-nowrap pr-4"><span class="text-purple-400">import</span> KDNotification <span class="text-purple-400">from</span> <span class="text-emerald-400">"notifications-kd"</span>;</span>
                                 <button onclick="copyText('import KDNotification from \'notifications-kd\';', this)" class="opacity-0 group-hover:opacity-100 transition-opacity p-2 bg-white/10 hover:bg-white/20 rounded-lg shrink-0 text-slate-300 hover:text-white" aria-label="Copy bundler import">
@@ -492,7 +522,7 @@
                             </div>
                         </div>
                         <div>
-                            <p class="text-xs font-bold text-slate-500 mb-2 ml-4 uppercase tracking-wider">Native Browser ES Module</p>
+                            <p class="text-[10px] sm:text-xs font-normal sm:font-bold text-slate-500 mb-2 ml-4 uppercase tracking-wider">Native Browser ES Module</p>
                             <div class="bg-slate-900 text-white p-5 rounded-2xl font-mono text-xs flex items-center justify-between group border border-white/5 overflow-x-auto">
                                 <span class="whitespace-nowrap pr-4"><span class="text-purple-400">import</span> KDNotification <span class="text-purple-400">from</span> <span class="text-emerald-400">"https://cdn.jsdelivr.net/npm/notifications-kd/notifications-kd.js"</span>;</span>
                                 <button onclick="copyText('import KDNotification from \'https://cdn.jsdelivr.net/npm/notifications-kd/notifications-kd.js\';', this)" class="opacity-0 group-hover:opacity-100 transition-opacity p-2 bg-white/10 hover:bg-white/20 rounded-lg shrink-0 text-slate-300 hover:text-white" aria-label="Copy native import">
@@ -505,7 +535,7 @@
 
                 <!-- Quick Usage Example -->
                 <div class="relative fade-in-up">
-                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
                         <i data-lucide="play" class="text-primary w-5 h-5"></i> Basic Usage
                     </h3>
                     <div class="group relative bg-[#0d1117] text-white p-8 rounded-2xl font-mono text-sm leading-relaxed overflow-x-auto pr-16 shadow-xl border border-white/5">
@@ -525,9 +555,9 @@
 
                 <!-- API Table -->
                 <div class="fade-in-up">
-                    <h3 class="text-xl font-bold mb-6">API Configuration Options</h3>
+                    <h3 class="text-lg sm:text-xl font-bold mb-4 sm:mb-6">API Configuration Options</h3>
                     <div class="overflow-hidden rounded-2xl border border-black/5 dark:border-white/5 glass overflow-x-auto">
-                        <table class="w-full text-left text-sm">
+                        <table class="w-full text-left text-sm min-w-[600px]">
                             <thead>
                                 <tr class="bg-black/5 dark:bg-white/5 font-bold uppercase text-[10px] tracking-widest">
                                     <th class="px-6 py-4">Option</th>
@@ -612,7 +642,7 @@
                 <div class="fade-in-up">
                     <h3 class="text-xl font-bold mb-6">Methods</h3>
                     <div class="overflow-hidden rounded-2xl border border-black/5 dark:border-white/5 glass overflow-x-auto">
-                        <table class="w-full text-left text-sm">
+                        <table class="w-full text-left text-sm min-w-[600px]">
                             <thead>
                                 <tr class="bg-black/5 dark:bg-white/5 font-bold uppercase text-[10px] tracking-widest">
                                     <th class="px-6 py-4">Method</th>
@@ -691,7 +721,7 @@
                         <i data-lucide="sliders" class="text-primary w-5 h-5"></i> CSS Customization
                     </h3>
                     <div class="overflow-hidden rounded-2xl border border-black/5 dark:border-white/5 glass overflow-x-auto">
-                        <table class="w-full text-left text-sm">
+                        <table class="w-full text-left text-sm min-w-[600px]">
                             <thead>
                                 <tr class="bg-black/5 dark:bg-white/5 font-bold uppercase text-[10px] tracking-widest">
                                     <th class="px-6 py-4">Variable</th>
@@ -728,14 +758,14 @@
                             </tbody>
                         </table>
                     </div>
-                    <p class="mt-4 text-sm text-slate-500 italic">💡 Use the <code class="text-primary">style</code> API or CSS variables for customization. Avoid targeting internal CSS classes directly, as they may change in future updates.</p>
+                    <p class="mt-4 text-xs sm:text-sm text-slate-500 italic">💡 Use the <code class="text-primary">style</code> API or CSS variables for customization. Avoid targeting internal CSS classes directly, as they may change in future updates.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="pt-16 pb-8 border-t border-black/5 dark:border-white/5">
+    <footer class="pt-12 sm:pt-16 pb-6 sm:pb-8 border-t border-black/5 dark:border-white/5">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between gap-12 mb-16">
                 <!-- Brand -->
@@ -746,7 +776,7 @@
                         </div>
                         <span class="font-extrabold text-lg text-slate-900 dark:text-white">KD <span class="text-primary">Notifications</span></span>
                     </div>
-                    <p class="text-slate-500 text-sm leading-relaxed mb-6">A zero-dependency, elegantly designed toast notification library for the modern web. Proudly crafted by KhvichaDev with ❤️ in Georgia.</p>
+                    <p class="text-xs sm:text-sm text-slate-500 leading-relaxed mb-6">A zero-dependency, elegantly designed toast notification library for the modern web. Proudly crafted by KhvichaDev with ❤️ in Georgia.</p>
                     <div class="flex items-center gap-5">
                         <a href="https://www.facebook.com/khvichadev" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#1877F2] dark:hover:text-[#1877F2] transition-colors" aria-label="Facebook" title="KhvichaDev's Facebook">
                             <i data-lucide="facebook" class="w-5 h-5"></i>
@@ -767,10 +797,10 @@
                 </div>
 
                 <!-- Link Groups -->
-                <div class="flex flex-wrap sm:flex-row gap-16 md:gap-24">
+                <div class="flex flex-wrap sm:flex-row gap-12 sm:gap-16 md:gap-24">
                     <!-- Quick Links -->
                     <div>
-                        <h4 class="font-bold text-slate-900 dark:text-white mb-6 text-sm uppercase tracking-widest">Quick Links</h4>
+                        <h4 class="font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 text-xs sm:text-sm uppercase tracking-widest">Quick Links</h4>
                         <div class="flex flex-col gap-3">
                             <a href="#features" class="text-slate-500 hover:text-primary transition-colors text-sm inline-flex">Features</a>
                             <a href="#playground" class="text-slate-500 hover:text-primary transition-colors text-sm inline-flex">Playground</a>
@@ -780,7 +810,7 @@
 
                     <!-- Resources -->
                     <div>
-                        <h4 class="font-bold text-slate-900 dark:text-white mb-6 text-sm uppercase tracking-widest">Resources</h4>
+                        <h4 class="font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 text-xs sm:text-sm uppercase tracking-widest">Resources</h4>
                         <div class="flex flex-col gap-3">
                             <a href="https://github.com/KhvichaDev/notifications-kd" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-primary transition-colors text-sm flex items-center gap-2"><i data-lucide="github" class="w-4 h-4"></i> GitHub Repository</a>
                             <a href="https://www.npmjs.com/package/notifications-kd" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-primary transition-colors text-sm flex items-center gap-2"><i data-lucide="package" class="w-4 h-4"></i> npm Package</a>
@@ -791,12 +821,12 @@
                 </div>
             </div>
 
-            <div class="border-t border-black/5 dark:border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="border-t border-black/5 dark:border-white/5 pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <a href="https://khvichadev.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 opacity-60 hover:opacity-100 hover:text-primary transition-all" title="Visit KhvichaDev.com">
                     <i data-lucide="code" class="w-4 h-4"></i>
                     <span class="text-xs font-bold tracking-widest uppercase">Crafted by KhvichaDev</span>
                 </a>
-                <p class="text-slate-500 text-sm">&copy; <span id="current-year">2026</span> <a href="https://github.com/KhvichaDev/notifications-kd/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors underline decoration-dotted underline-offset-4" title="Show License">MIT License</a>. Open source and free to use.</p>
+                <p class="text-slate-500 text-xs sm:text-sm text-center sm:text-left">&copy; <span id="current-year">2026</span> <a href="https://github.com/KhvichaDev/notifications-kd/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors underline decoration-dotted underline-offset-4" title="Show License">MIT License</a>. Open source and free to use.</p>
             </div>
         </div>
     </footer>
@@ -1121,14 +1151,42 @@
 
         document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
 
-        /** Back to Top Button visibility */
+        /** Scroll event handler for Back to Top Button & Active Menu Link */
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
         window.addEventListener('scroll', () => {
+            // 1. Back to top button logic
             const btn = document.getElementById('back-to-top');
             if (window.scrollY > 400) {
                 btn.classList.remove('hidden-btn');
             } else {
                 btn.classList.add('hidden-btn');
             }
+
+            // 2. Navigation Active State logic
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-primary');
+                if (current && link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('text-primary');
+                }
+            });
+
+            /** Mobile menu active state — highlights the entire button, not just text */
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.classList.remove('nav-active');
+                if (current && link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('nav-active');
+                }
+            });
         });
 
         /** Initial render */
