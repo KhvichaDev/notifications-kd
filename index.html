@@ -871,8 +871,8 @@ copy-paste examples directly into their projects without setup.
     <!-- ========================================== -->
     <!--            JAVASCRIPT LOGIC                -->
     <!-- ========================================== -->
-    <script src="https://unpkg.com/lucide@0.344.0"></script>
-    <script src="https://unpkg.com/notifications-kd@1.2.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/notifications-kd@1.2.0/notifications-kd.min.js" defer></script>
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
@@ -1210,6 +1210,35 @@ copy-paste examples directly into their projects without setup.
         const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
         let isScrolling = false;
 
+        /**
+         * Navigation scroll spy using IntersectionObserver.
+         * Resolves forced reflows and layout thrashing by eliminating scroll listeners
+         * that read DOM layouts on every scroll event.
+         */
+        const scrollSpyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const currentId = entry.target.getAttribute('id');
+                    
+                    navLinks.forEach(link => {
+                        link.classList.remove('text-primary');
+                        if (link.getAttribute('href') === `#${currentId}`) {
+                            link.classList.add('text-primary');
+                        }
+                    });
+                    
+                    mobileNavLinks.forEach(link => {
+                        link.classList.remove('nav-active');
+                        if (link.getAttribute('href') === `#${currentId}`) {
+                            link.classList.add('nav-active');
+                        }
+                    });
+                }
+            });
+        }, { rootMargin: '-20% 0px -80% 0px' });
+
+        sections.forEach(section => scrollSpyObserver.observe(section));
+
         window.addEventListener('scroll', () => {
             if (!isScrolling) {
                 window.requestAnimationFrame(() => {
@@ -1219,34 +1248,11 @@ copy-paste examples directly into their projects without setup.
                     } else {
                         btn.classList.add('hidden-btn');
                     }
-
-                    let current = '';
-                    sections.forEach(section => {
-                        const sectionTop = section.offsetTop;
-                        if (window.scrollY >= (sectionTop - 200)) {
-                            current = section.getAttribute('id');
-                        }
-                    });
-
-                    navLinks.forEach(link => {
-                        link.classList.remove('text-primary');
-                        if (current && link.getAttribute('href') === `#${current}`) {
-                            link.classList.add('text-primary');
-                        }
-                    });
-
-                    mobileNavLinks.forEach(link => {
-                        link.classList.remove('nav-active');
-                        if (current && link.getAttribute('href') === `#${current}`) {
-                            link.classList.add('nav-active');
-                        }
-                    });
-
                     isScrolling = false;
                 });
                 isScrolling = true;
             }
-        });
+        }, { passive: true });
 
         updateCodeView();
 
