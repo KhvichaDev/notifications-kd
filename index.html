@@ -67,7 +67,11 @@ copy-paste examples directly into their projects without setup.
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    
+    <!-- Load Google Fonts asynchronously to prevent render-blocking -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"></noscript>
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -308,7 +312,7 @@ copy-paste examples directly into their projects without setup.
             <div class="mt-12 sm:mt-20 glass rounded-3xl p-2 max-w-4xl mx-auto shadow-2xl relative fade-in-up">
                 <div class="relative w-full aspect-[16/10] rounded-2xl overflow-hidden shadow-inner bg-slate-900" id="yt-container">
                     <div id="yt-facade" class="absolute inset-0 cursor-pointer group" onclick="loadYouTubeVideo()" role="button" tabindex="0" aria-label="Play YouTube Demo Video" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); loadYouTubeVideo(); }">
-                        <img src="https://img.youtube.com/vi/kdg47xX_sU4/maxresdefault.jpg" alt="KD Notifications Demo" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                        <img src="https://i.ytimg.com/vi_webp/kdg47xX_sU4/maxresdefault.webp" alt="KD Notifications Demo" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300">
                         <div class="absolute inset-0 flex items-center justify-center">
                             <div class="w-16 h-16 sm:w-20 sm:h-20 bg-primary/90 rounded-full flex items-center justify-center shadow-lg shadow-primary/30 group-hover:scale-110 group-hover:bg-primary transition-all duration-300">
                                 <i data-lucide="play" class="w-8 h-8 sm:w-10 sm:h-10 text-white ml-1"></i>
