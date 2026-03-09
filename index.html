@@ -297,7 +297,7 @@ copy-paste examples directly into their projects without setup.
             <!-- Dashboard Preview -->
             <div class="mt-12 sm:mt-20 glass rounded-3xl p-2 max-w-4xl mx-auto shadow-2xl relative fade-in-up">
                 <div class="relative w-full aspect-[16/10] rounded-2xl overflow-hidden shadow-inner bg-slate-900" id="yt-container">
-                    <div id="yt-facade" class="absolute inset-0 cursor-pointer group" onclick="loadYouTubeVideo()">
+                    <div id="yt-facade" class="absolute inset-0 cursor-pointer group" onclick="loadYouTubeVideo()" role="button" tabindex="0" aria-label="Play YouTube Demo Video" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); loadYouTubeVideo(); }">
                         <img src="https://img.youtube.com/vi/kdg47xX_sU4/maxresdefault.jpg" alt="KD Notifications Demo" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300">
                         <div class="absolute inset-0 flex items-center justify-center">
                             <div class="w-16 h-16 sm:w-20 sm:h-20 bg-primary/90 rounded-full flex items-center justify-center shadow-lg shadow-primary/30 group-hover:scale-110 group-hover:bg-primary transition-all duration-300">
@@ -433,8 +433,8 @@ copy-paste examples directly into their projects without setup.
                     <div class="p-5 sm:p-6 rounded-3xl glass fade-in-up">
                         <label class="text-[10px] font-black uppercase tracking-widest text-primary mb-3 sm:mb-4 block">Custom Text</label>
                         <div class="space-y-2 sm:space-y-3">
-                            <input type="text" id="pg-title" placeholder="Title (optional — leave empty for simple layout)" value="" class="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all placeholder:text-slate-400" oninput="userModifiedTitle = true; syncInputToOptions()">
-                            <input type="text" id="pg-message" placeholder="Message" value="Data synced successfully!" class="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all placeholder:text-slate-400" oninput="userModifiedMessage = true; syncInputToOptions()">
+                            <input type="text" id="pg-title" aria-label="Notification Title" placeholder="Title (optional — leave empty for simple layout)" value="" class="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all placeholder:text-slate-400" oninput="userModifiedTitle = true; syncInputToOptions()">
+                            <input type="text" id="pg-message" aria-label="Notification Message" placeholder="Message" value="Data synced successfully!" class="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all placeholder:text-slate-400" oninput="userModifiedMessage = true; syncInputToOptions()">
                         </div>
                     </div>
 
@@ -444,18 +444,18 @@ copy-paste examples directly into their projects without setup.
                             <label class="text-[10px] font-black uppercase tracking-widest text-primary">Duration</label>
                             <span id="duration-val" class="text-xs font-bold text-primary">3000ms</span>
                         </div>
-                        <input type="range" id="pg-duration" min="0" max="10000" step="500" value="3000" oninput="updateDuration(this.value)" class="w-full accent-primary">
+                        <input type="range" id="pg-duration" aria-label="Notification Duration" min="0" max="10000" step="500" value="3000" oninput="updateDuration(this.value)" class="w-full accent-primary">
                     </div>
 
                     <!-- Screen Position -->
                     <div class="p-5 sm:p-6 rounded-3xl glass fade-in-up">
                         <label class="text-[10px] font-black uppercase tracking-widest text-primary mb-4 sm:mb-6 block">Screen Position</label>
                         <div class="grid grid-cols-2 gap-2 sm:gap-3 mx-auto max-w-[200px] sm:max-w-none">
-                            <button data-pos="top-left" onclick="updatePos('top-left', this)" class="pos-grid-btn p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-black/10 dark:border-white/10 hover:border-primary/40 transition-all flex items-center justify-center"><i data-lucide="arrow-up-left" class="w-5 h-5"></i></button>
-                            <button data-pos="top-right" onclick="updatePos('top-right', this)" class="pos-grid-btn p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-black/10 dark:border-white/10 hover:border-primary/40 transition-all flex items-center justify-center"><i data-lucide="arrow-up-right" class="w-5 h-5"></i></button>
-                            <button data-pos="center" onclick="updatePos('center', this)" class="pos-grid-btn col-span-2 justify-self-center p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-black/10 dark:border-white/10 hover:border-primary/40 transition-all flex items-center justify-center active" style="width:calc(50% - 4px)"><i data-lucide="maximize" class="w-5 h-5"></i></button>
-                            <button data-pos="bottom-left" onclick="updatePos('bottom-left', this)" class="pos-grid-btn p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-black/10 dark:border-white/10 hover:border-primary/40 transition-all flex items-center justify-center"><i data-lucide="arrow-down-left" class="w-5 h-5"></i></button>
-                            <button data-pos="bottom-right" onclick="updatePos('bottom-right', this)" class="pos-grid-btn p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-black/10 dark:border-white/10 hover:border-primary/40 transition-all flex items-center justify-center"><i data-lucide="arrow-down-right" class="w-5 h-5"></i></button>
+                            <button data-pos="top-left" aria-label="Position Top Left" onclick="updatePos('top-left', this)" class="pos-grid-btn p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-black/10 dark:border-white/10 hover:border-primary/40 transition-all flex items-center justify-center"><i data-lucide="arrow-up-left" class="w-5 h-5"></i></button>
+                            <button data-pos="top-right" aria-label="Position Top Right" onclick="updatePos('top-right', this)" class="pos-grid-btn p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-black/10 dark:border-white/10 hover:border-primary/40 transition-all flex items-center justify-center"><i data-lucide="arrow-up-right" class="w-5 h-5"></i></button>
+                            <button data-pos="center" aria-label="Position Center" onclick="updatePos('center', this)" class="pos-grid-btn col-span-2 justify-self-center p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-black/10 dark:border-white/10 hover:border-primary/40 transition-all flex items-center justify-center active" style="width:calc(50% - 4px)"><i data-lucide="maximize" class="w-5 h-5"></i></button>
+                            <button data-pos="bottom-left" aria-label="Position Bottom Left" onclick="updatePos('bottom-left', this)" class="pos-grid-btn p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-black/10 dark:border-white/10 hover:border-primary/40 transition-all flex items-center justify-center"><i data-lucide="arrow-down-left" class="w-5 h-5"></i></button>
+                            <button data-pos="bottom-right" aria-label="Position Bottom Right" onclick="updatePos('bottom-right', this)" class="pos-grid-btn p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-black/10 dark:border-white/10 hover:border-primary/40 transition-all flex items-center justify-center"><i data-lucide="arrow-down-right" class="w-5 h-5"></i></button>
                         </div>
                     </div>
                 </div>
