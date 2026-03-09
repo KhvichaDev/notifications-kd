@@ -68,7 +68,13 @@ copy-paste examples directly into their projects without setup.
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
-    
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://i.ytimg.com">
+    <link rel="dns-prefetch" href="https://bundlephobia.com">
+    <link rel="dns-prefetch" href="https://registry.npmjs.org">
+    <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js" crossorigin>
+    <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/notifications-kd@1.2.0/notifications-kd.min.js" crossorigin>
+
     <!-- Load Google Fonts asynchronously to prevent render-blocking -->
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"></noscript>
@@ -312,7 +318,7 @@ copy-paste examples directly into their projects without setup.
             <div class="mt-12 sm:mt-20 glass rounded-3xl p-2 max-w-4xl mx-auto shadow-2xl relative fade-in-up">
                 <div class="relative w-full aspect-[16/10] rounded-2xl overflow-hidden shadow-inner bg-slate-900" id="yt-container">
                     <div id="yt-facade" class="absolute inset-0 cursor-pointer group" onclick="loadYouTubeVideo()" role="button" tabindex="0" aria-label="Play YouTube Demo Video" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); loadYouTubeVideo(); }">
-                        <img src="https://i.ytimg.com/vi_webp/kdg47xX_sU4/maxresdefault.webp" alt="KD Notifications Demo" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                        <img src="https://i.ytimg.com/vi_webp/kdg47xX_sU4/sddefault.webp" srcset="https://i.ytimg.com/vi_webp/kdg47xX_sU4/sddefault.webp 640w, https://i.ytimg.com/vi_webp/kdg47xX_sU4/maxresdefault.webp 1280w" sizes="(max-width: 768px) 100vw, 896px" alt="KD Notifications Demo" fetchpriority="high" decoding="async" width="1280" height="800" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300">
                         <div class="absolute inset-0 flex items-center justify-center">
                             <div class="w-16 h-16 sm:w-20 sm:h-20 bg-primary/90 rounded-full flex items-center justify-center shadow-lg shadow-primary/30 group-hover:scale-110 group-hover:bg-primary transition-all duration-300">
                                 <i data-lucide="play" class="w-8 h-8 sm:w-10 sm:h-10 text-white ml-1"></i>
@@ -896,8 +902,6 @@ copy-paste examples directly into their projects without setup.
             theme: 'auto'
         };
 
-        lucide.createIcons();
-
         function toggleTheme() {
             document.documentElement.classList.toggle('dark');
         }
@@ -1191,89 +1195,103 @@ copy-paste examples directly into their projects without setup.
         }
 
         /**
-         * Initializes an Intersection Observer to trigger scroll-based entry animations.
-         * Elements receive the visible state class when they cross the 10% viewport threshold.
+         * All DOM-dependent initialization runs after deferred scripts have loaded.
+         * This ensures Lucide icons and KDNotification are fully available,
+         * and moves non-critical API requests to browser idle time for better TBT scores.
          */
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof lucide !== 'undefined') lucide.createIcons();
 
-        document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
-
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('nav a[href^="#"]');
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-        let isScrolling = false;
-
-        /**
-         * Navigation scroll spy using IntersectionObserver.
-         * Resolves forced reflows and layout thrashing by eliminating scroll listeners
-         * that read DOM layouts on every scroll event.
-         */
-        const scrollSpyObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const currentId = entry.target.getAttribute('id');
-                    
-                    navLinks.forEach(link => {
-                        link.classList.remove('text-primary');
-                        if (link.getAttribute('href') === `#${currentId}`) {
-                            link.classList.add('text-primary');
-                        }
-                    });
-                    
-                    mobileNavLinks.forEach(link => {
-                        link.classList.remove('nav-active');
-                        if (link.getAttribute('href') === `#${currentId}`) {
-                            link.classList.add('nav-active');
-                        }
-                    });
-                }
-            });
-        }, { rootMargin: '-20% 0px -80% 0px' });
-
-        sections.forEach(section => scrollSpyObserver.observe(section));
-
-        window.addEventListener('scroll', () => {
-            if (!isScrolling) {
-                window.requestAnimationFrame(() => {
-                    const btn = document.getElementById('back-to-top');
-                    if (window.scrollY > 400) {
-                        btn.classList.remove('hidden-btn');
-                    } else {
-                        btn.classList.add('hidden-btn');
+            /** Scroll-based entry animation trigger at the 10% viewport threshold */
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
                     }
-                    isScrolling = false;
                 });
-                isScrolling = true;
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            let isScrolling = false;
+
+            /**
+             * Navigation scroll spy using IntersectionObserver.
+             * Eliminates scroll listeners that cause forced reflows and layout thrashing.
+             */
+            const scrollSpyObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const currentId = entry.target.getAttribute('id');
+
+                        navLinks.forEach(link => {
+                            link.classList.remove('text-primary');
+                            if (link.getAttribute('href') === `#${currentId}`) {
+                                link.classList.add('text-primary');
+                            }
+                        });
+
+                        mobileNavLinks.forEach(link => {
+                            link.classList.remove('nav-active');
+                            if (link.getAttribute('href') === `#${currentId}`) {
+                                link.classList.add('nav-active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: '-20% 0px -80% 0px' });
+
+            sections.forEach(section => scrollSpyObserver.observe(section));
+
+            window.addEventListener('scroll', () => {
+                if (!isScrolling) {
+                    window.requestAnimationFrame(() => {
+                        const btn = document.getElementById('back-to-top');
+                        if (window.scrollY > 400) {
+                            btn.classList.remove('hidden-btn');
+                        } else {
+                            btn.classList.add('hidden-btn');
+                        }
+                        isScrolling = false;
+                    });
+                    isScrolling = true;
+                }
+            }, { passive: true });
+
+            updateCodeView();
+
+            /** Non-critical API requests deferred to browser idle time */
+            const loadDynamicData = () => {
+                fetch('https://bundlephobia.com/api/size?package=notifications-kd')
+                    .then(r => r.json())
+                    .then(data => {
+                        const sizeKB = (data.gzip / 1024).toFixed(1);
+                        document.getElementById('bundle-size-label').textContent = sizeKB + 'KB gzipped';
+                    })
+                    .catch(() => {
+                        document.getElementById('bundle-size-label').textContent = '~4KB gzipped';
+                    });
+
+                fetch('https://registry.npmjs.org/notifications-kd/latest')
+                    .then(r => r.json())
+                    .then(data => {
+                        document.getElementById('version-badge').textContent = 'v' + data.version + ' — See What\'s New →';
+                    })
+                    .catch(() => {
+                        document.getElementById('version-badge').textContent = 'See What\'s New →';
+                    });
+            };
+
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(loadDynamicData);
+            } else {
+                setTimeout(loadDynamicData, 1);
             }
-        }, { passive: true });
-
-        updateCodeView();
-
-        fetch('https://bundlephobia.com/api/size?package=notifications-kd')
-            .then(r => r.json())
-            .then(data => {
-                const sizeKB = (data.gzip / 1024).toFixed(1);
-                document.getElementById('bundle-size-label').textContent = sizeKB + 'KB gzipped';
-            })
-            .catch(() => {
-                document.getElementById('bundle-size-label').textContent = '~4KB gzipped';
-            });
-
-        fetch('https://registry.npmjs.org/notifications-kd/latest')
-            .then(r => r.json())
-            .then(data => {
-                document.getElementById('version-badge').textContent = 'v' + data.version + ' — See What\'s New →';
-            })
-            .catch(() => {
-                document.getElementById('version-badge').textContent = 'See What\'s New →';
-            });
+        });
     </script>
 </body>
 </html>
