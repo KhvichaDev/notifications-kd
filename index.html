@@ -77,7 +77,7 @@ copy-paste examples directly into their projects without setup.
             theme: {
                 extend: {
                     colors: {
-                        primary: { DEFAULT: '#4da6ff', dark: '#3b82f6' },
+                        primary: 'rgb(var(--kd-primary-rgb) / <alpha-value>)',
                         dark: { 900: '#0f172a', 800: '#1e293b', 700: '#334155' }
                     }
                 }
@@ -89,6 +89,13 @@ copy-paste examples directly into their projects without setup.
     <!--                 CSS STYLES                 -->
     <!-- ========================================== -->
     <style>
+        :root {
+            --kd-primary-rgb: 37 99 235; /* blue-600 logic */
+        }
+        html.dark {
+            --kd-primary-rgb: 77 166 255; /* sky-400 logic */
+        }
+
         body { font-family: 'Inter', sans-serif; }
 
         .glass {
@@ -103,10 +110,10 @@ copy-paste examples directly into their projects without setup.
 
         .pos-grid-btn.active,
         .playground-theme-btn.active {
-            background-color: rgba(77, 166, 255, 0.15);
-            color: #4da6ff;
-            border-color: rgba(77, 166, 255, 0.4);
-            box-shadow: 0 0 0 3px rgba(77, 166, 255, 0.1);
+            background-color: rgb(var(--kd-primary-rgb) / 0.15);
+            color: rgb(var(--kd-primary-rgb));
+            border-color: rgb(var(--kd-primary-rgb) / 0.4);
+            box-shadow: 0 0 0 3px rgb(var(--kd-primary-rgb) / 0.1);
         }
 
         .type-btn.active {
@@ -248,6 +255,9 @@ copy-paste examples directly into their projects without setup.
             </div>
         </div>
     </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
 
     <!-- Hero Section -->
     <section class="pt-24 sm:pt-32 pb-12 sm:pb-20 px-4 overflow-hidden">
@@ -402,7 +412,7 @@ copy-paste examples directly into their projects without setup.
                 <div class="lg:col-span-5 space-y-4 sm:space-y-6">
                     <!-- Playground Theme (Mobile) -->
                     <div class="md:hidden p-5 sm:p-6 rounded-3xl glass fade-in-up">
-                        <label class="text-[10px] font-black uppercase tracking-widest text-primary mb-3 sm:mb-4 block">Playground Theme</label>
+                        <span class="text-[10px] font-black uppercase tracking-widest text-primary mb-3 sm:mb-4 block">Playground Theme</span>
                         <div class="grid grid-cols-3 gap-2 p-1 bg-slate-100 dark:bg-dark-800 rounded-2xl border border-black/5 dark:border-white/5">
                             <button onclick="changePlaygroundTheme('auto')" class="playground-theme-btn active px-2 py-2 rounded-xl text-xs font-bold transition-all">AUTO</button>
                             <button onclick="changePlaygroundTheme('light')" class="playground-theme-btn px-2 py-2 rounded-xl text-xs font-bold transition-all">LIGHT</button>
@@ -411,7 +421,7 @@ copy-paste examples directly into their projects without setup.
                     </div>
                     <!-- Notification Type -->
                     <div class="p-5 sm:p-6 rounded-3xl glass fade-in-up">
-                        <label class="text-[10px] font-black uppercase tracking-widest text-primary mb-3 sm:mb-4 block">Notification Type</label>
+                        <span class="text-[10px] font-black uppercase tracking-widest text-primary mb-3 sm:mb-4 block">Notification Type</span>
                         <div class="grid grid-cols-2 gap-2 sm:gap-3">
                             <button onclick="demo('success', this)" class="type-btn active p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 font-bold text-sm hover:bg-emerald-500/20 transition-all">Success</button>
                             <button onclick="demo('error', this)" class="type-btn p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-red-500/10 text-red-500 border border-red-500/20 font-bold text-sm hover:bg-red-500/20 transition-all">Error</button>
@@ -431,17 +441,17 @@ copy-paste examples directly into their projects without setup.
 
                     <!-- Custom Text -->
                     <div class="p-5 sm:p-6 rounded-3xl glass fade-in-up">
-                        <label class="text-[10px] font-black uppercase tracking-widest text-primary mb-3 sm:mb-4 block">Custom Text</label>
+                        <span class="text-[10px] font-black uppercase tracking-widest text-primary mb-3 sm:mb-4 block">Custom Text</span>
                         <div class="space-y-2 sm:space-y-3">
-                            <input type="text" id="pg-title" aria-label="Notification Title" placeholder="Title (optional — leave empty for simple layout)" value="" class="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all placeholder:text-slate-400" oninput="userModifiedTitle = true; syncInputToOptions()">
-                            <input type="text" id="pg-message" aria-label="Notification Message" placeholder="Message" value="Data synced successfully!" class="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all placeholder:text-slate-400" oninput="userModifiedMessage = true; syncInputToOptions()">
+                            <input type="text" id="pg-title" aria-label="Notification Title" placeholder="Title (optional — leave empty for simple layout)" value="" class="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all placeholder:text-slate-500 dark:placeholder:text-slate-400" oninput="userModifiedTitle = true; syncInputToOptions()">
+                            <input type="text" id="pg-message" aria-label="Notification Message" placeholder="Message" value="Data synced successfully!" class="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all placeholder:text-slate-500 dark:placeholder:text-slate-400" oninput="userModifiedMessage = true; syncInputToOptions()">
                         </div>
                     </div>
 
                     <!-- Duration -->
                     <div class="p-5 sm:p-6 rounded-3xl glass fade-in-up">
                         <div class="flex items-center justify-between mb-2 sm:mb-3">
-                            <label class="text-[10px] font-black uppercase tracking-widest text-primary">Duration</label>
+                            <label for="pg-duration" class="text-[10px] font-black uppercase tracking-widest text-primary">Duration</label>
                             <span id="duration-val" class="text-xs font-bold text-primary">3000ms</span>
                         </div>
                         <input type="range" id="pg-duration" aria-label="Notification Duration" min="0" max="10000" step="500" value="3000" oninput="updateDuration(this.value)" class="w-full accent-primary">
@@ -449,7 +459,7 @@ copy-paste examples directly into their projects without setup.
 
                     <!-- Screen Position -->
                     <div class="p-5 sm:p-6 rounded-3xl glass fade-in-up">
-                        <label class="text-[10px] font-black uppercase tracking-widest text-primary mb-4 sm:mb-6 block">Screen Position</label>
+                        <span class="text-[10px] font-black uppercase tracking-widest text-primary mb-4 sm:mb-6 block">Screen Position</span>
                         <div class="grid grid-cols-2 gap-2 sm:gap-3 mx-auto max-w-[200px] sm:max-w-none">
                             <button data-pos="top-left" aria-label="Position Top Left" onclick="updatePos('top-left', this)" class="pos-grid-btn p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-black/10 dark:border-white/10 hover:border-primary/40 transition-all flex items-center justify-center"><i data-lucide="arrow-up-left" class="w-5 h-5"></i></button>
                             <button data-pos="top-right" aria-label="Position Top Right" onclick="updatePos('top-right', this)" class="pos-grid-btn p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-black/10 dark:border-white/10 hover:border-primary/40 transition-all flex items-center justify-center"><i data-lucide="arrow-up-right" class="w-5 h-5"></i></button>
@@ -780,6 +790,8 @@ copy-paste examples directly into their projects without setup.
         </div>
     </section>
 
+    </main>
+
     <!-- Footer -->
     <footer class="pt-12 sm:pt-16 pb-6 sm:pb-8 border-t border-black/5 dark:border-white/5">
         <div class="max-w-7xl mx-auto px-4">
@@ -794,19 +806,19 @@ copy-paste examples directly into their projects without setup.
                     </div>
                     <p class="text-sm sm:text-base text-slate-500 leading-relaxed max-w-xl mb-6">A zero-dependency, elegantly designed toast notification library for the modern web. Proudly crafted by KhvichaDev with ❤️ in Georgia.</p>
                     <div class="flex items-center gap-5">
-                        <a href="https://www.facebook.com/khvichadev" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#1877F2] dark:hover:text-[#1877F2] transition-colors" aria-label="Facebook" title="KhvichaDev's Facebook">
+                        <a href="https://www.facebook.com/khvichadev" target="_blank" rel="noopener noreferrer" class="text-slate-500 dark:text-slate-400 hover:text-[#1877F2] dark:hover:text-[#1877F2] transition-colors" aria-label="Facebook" title="KhvichaDev's Facebook">
                             <i data-lucide="facebook" class="w-5 h-5"></i>
                         </a>
-                        <a href="https://www.reddit.com/user/KhvichaDev/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#FF4500] dark:hover:text-[#FF4500] transition-colors" aria-label="Reddit" title="KhvichaDev's Reddit">
+                        <a href="https://www.reddit.com/user/KhvichaDev/" target="_blank" rel="noopener noreferrer" class="text-slate-500 dark:text-slate-400 hover:text-[#FF4500] dark:hover:text-[#FF4500] transition-colors" aria-label="Reddit" title="KhvichaDev's Reddit">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-2.752 4.698c-1.514 0-2.684-.52-2.752-.553a.362.362 0 0 1-.161-.482c.118-.215.39-.297.606-.179.034.018 1.05.52 2.307.52 1.245 0 2.25-.494 2.296-.51.22-.08.475.02.56.233.084.212-.014.471-.226.551-.06.02-1.12.42-2.63.42z"/></svg>
                         </a>
-                        <a href="https://www.linkedin.com/in/khvichadev/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#0A66C2] dark:hover:text-[#0A66C2] transition-colors" aria-label="LinkedIn" title="KhvichaDev's LinkedIn">
+                        <a href="https://www.linkedin.com/in/khvichadev/" target="_blank" rel="noopener noreferrer" class="text-slate-500 dark:text-slate-400 hover:text-[#0A66C2] dark:hover:text-[#0A66C2] transition-colors" aria-label="LinkedIn" title="KhvichaDev's LinkedIn">
                             <i data-lucide="linkedin" class="w-5 h-5"></i>
                         </a>
-                        <a href="https://github.com/KhvichaDev" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#333] dark:hover:text-white transition-colors" aria-label="GitHub" title="KhvichaDev's GitHub">
+                        <a href="https://github.com/KhvichaDev" target="_blank" rel="noopener noreferrer" class="text-slate-500 dark:text-slate-400 hover:text-[#333] dark:hover:text-white transition-colors" aria-label="GitHub" title="KhvichaDev's GitHub">
                             <i data-lucide="github" class="w-5 h-5"></i>
                         </a>
-                        <a href="https://www.youtube.com/@khvichadev" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#FF0000] dark:hover:text-[#FF0000] transition-colors" aria-label="YouTube" title="KhvichaDev's YouTube">
+                        <a href="https://www.youtube.com/@khvichadev" target="_blank" rel="noopener noreferrer" class="text-slate-500 dark:text-slate-400 hover:text-[#FF0000] dark:hover:text-[#FF0000] transition-colors" aria-label="YouTube" title="KhvichaDev's YouTube">
                             <i data-lucide="youtube" class="w-5 h-5"></i>
                         </a>
                     </div>
