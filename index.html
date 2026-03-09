@@ -402,7 +402,7 @@ copy-paste examples directly into their projects without setup.
                     <p class="text-sm sm:text-base text-slate-500 dark:text-slate-400 leading-relaxed max-w-xl">Configure, preview, and copy ready-to-use code — use it directly in your project</p>
                 </div>
                 <div class="hidden md:flex flex-col items-start gap-2">
-                    <span class="text-[10px] font-black uppercase tracking-widest text-primary ml-2">Playground Theme</span>
+                    <span class="text-[10px] sm:text-xs font-black uppercase tracking-widest text-primary ml-2">Playground Theme</span>
                     <div class="flex gap-2 p-1 bg-slate-100 dark:bg-dark-800 rounded-2xl border border-black/5 dark:border-white/5">
                         <button onclick="changePlaygroundTheme('auto')" class="playground-theme-btn active px-4 py-2 rounded-xl text-xs font-bold transition-all">AUTO</button>
                         <button onclick="changePlaygroundTheme('light')" class="playground-theme-btn px-4 py-2 rounded-xl text-xs font-bold transition-all">LIGHT</button>
@@ -413,10 +413,10 @@ copy-paste examples directly into their projects without setup.
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-8">
                 <!-- Controls -->
-                <div class="lg:col-span-5 space-y-4 sm:space-y-6">
+                <div class="lg:col-span-5 flex flex-col gap-4 sm:gap-6">
                     <!-- Playground Theme (Mobile) -->
                     <div class="md:hidden p-5 sm:p-6 rounded-3xl glass fade-in-up">
-                        <span class="text-[10px] font-black uppercase tracking-widest text-primary mb-3 sm:mb-4 block">Playground Theme</span>
+                        <span class="text-[10px] sm:text-xs font-black uppercase tracking-widest text-primary mb-3 sm:mb-4 block">Playground Theme</span>
                         <div class="grid grid-cols-3 gap-2 p-1 bg-slate-100 dark:bg-dark-800 rounded-2xl border border-black/5 dark:border-white/5">
                             <button onclick="changePlaygroundTheme('auto')" class="playground-theme-btn active px-2 py-2 rounded-xl text-xs font-bold transition-all">AUTO</button>
                             <button onclick="changePlaygroundTheme('light')" class="playground-theme-btn px-2 py-2 rounded-xl text-xs font-bold transition-all">LIGHT</button>
@@ -425,7 +425,7 @@ copy-paste examples directly into their projects without setup.
                     </div>
                     <!-- Notification Type -->
                     <div class="p-5 sm:p-6 rounded-3xl glass fade-in-up">
-                        <span class="text-[10px] font-black uppercase tracking-widest text-primary mb-3 sm:mb-4 block">Notification Type</span>
+                        <span class="text-[10px] sm:text-xs font-black uppercase tracking-widest text-primary mb-3 sm:mb-4 block">Notification Type</span>
                         <div class="grid grid-cols-2 gap-2 sm:gap-3">
                             <button onclick="demo('success', this)" class="type-btn active p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-bold text-sm hover:bg-emerald-500/20 transition-all">Success</button>
                             <button onclick="demo('error', this)" class="type-btn p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20 font-bold text-sm hover:bg-red-500/20 transition-all">Error</button>
@@ -445,7 +445,7 @@ copy-paste examples directly into their projects without setup.
 
                     <!-- Custom Text -->
                     <div class="p-5 sm:p-6 rounded-3xl glass fade-in-up">
-                        <span class="text-[10px] font-black uppercase tracking-widest text-primary mb-3 sm:mb-4 block">Custom Text</span>
+                        <span class="text-[10px] sm:text-xs font-black uppercase tracking-widest text-primary mb-3 sm:mb-4 block">Custom Text</span>
                         <div class="space-y-2 sm:space-y-3">
                             <input type="text" id="pg-title" aria-label="Notification Title" placeholder="Title (optional — leave empty for simple layout)" value="" class="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all placeholder:text-slate-500 dark:placeholder:text-slate-400" oninput="userModifiedTitle = true; syncInputToOptions()">
                             <input type="text" id="pg-message" aria-label="Notification Message" placeholder="Message" value="Data synced successfully!" class="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all placeholder:text-slate-500 dark:placeholder:text-slate-400" oninput="userModifiedMessage = true; syncInputToOptions()">
@@ -455,7 +455,7 @@ copy-paste examples directly into their projects without setup.
                     <!-- Duration -->
                     <div class="p-5 sm:p-6 rounded-3xl glass fade-in-up">
                         <div class="flex items-center justify-between mb-2 sm:mb-3">
-                            <label for="pg-duration" class="text-[10px] font-black uppercase tracking-widest text-primary">Duration</label>
+                            <label for="pg-duration" class="text-[10px] sm:text-xs font-black uppercase tracking-widest text-primary">Duration</label>
                             <span id="duration-val" class="text-xs font-bold text-primary">3000ms</span>
                         </div>
                         <input type="range" id="pg-duration" aria-label="Notification Duration" min="0" max="10000" step="500" value="3000" oninput="updateDuration(this.value)" class="w-full accent-primary">
@@ -463,7 +463,7 @@ copy-paste examples directly into their projects without setup.
 
                     <!-- Screen Position -->
                     <div class="p-5 sm:p-6 rounded-3xl glass fade-in-up">
-                        <span class="text-[10px] font-black uppercase tracking-widest text-primary mb-4 sm:mb-6 block">Screen Position</span>
+                        <span class="text-[10px] sm:text-xs font-black uppercase tracking-widest text-primary mb-4 sm:mb-6 block">Screen Position</span>
                         <div class="grid grid-cols-2 gap-2 sm:gap-3 mx-auto max-w-[200px] sm:max-w-none">
                             <button data-pos="top-left" aria-label="Position Top Left" onclick="updatePos('top-left', this)" class="pos-grid-btn p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-black/10 dark:border-white/10 hover:border-primary/40 transition-all flex items-center justify-center"><i data-lucide="arrow-up-left" class="w-5 h-5"></i></button>
                             <button data-pos="top-right" aria-label="Position Top Right" onclick="updatePos('top-right', this)" class="pos-grid-btn p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-black/10 dark:border-white/10 hover:border-primary/40 transition-all flex items-center justify-center"><i data-lucide="arrow-up-right" class="w-5 h-5"></i></button>
@@ -478,7 +478,7 @@ copy-paste examples directly into their projects without setup.
                 <div class="lg:col-span-7 flex flex-col fade-in-up">
                     <div class="flex-grow rounded-3xl bg-[#0d1117] overflow-hidden flex flex-col shadow-2xl">
                         <div class="bg-slate-800/50 px-4 py-3 sm:px-6 sm:py-4 border-b border-white/5 flex items-center justify-between">
-                            <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">JavaScript Implementation</span>
+                            <span class="text-[10px] sm:text-xs font-black text-slate-400 uppercase tracking-widest">JavaScript Implementation</span>
                             <button onclick="copyCode(this)" class="text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-bold" aria-label="Copy code">
                                 <i data-lucide="copy" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i> <span>COPY</span>
                             </button>
@@ -517,7 +517,7 @@ copy-paste examples directly into their projects without setup.
                     <div class="space-y-4">
                         <div>
                             <p class="text-[10px] sm:text-xs font-normal sm:font-bold text-slate-500 mb-2 ml-4 uppercase tracking-wider">jsDelivr</p>
-                            <div class="bg-slate-900 text-white p-5 rounded-2xl font-mono text-xs flex items-center justify-between group border border-white/5 overflow-x-auto">
+                            <div class="bg-slate-900 text-white p-5 rounded-2xl font-mono text-sm flex items-center justify-between group border border-white/5 overflow-x-auto">
                                 <span class="whitespace-nowrap pr-4">&lt;script <span class="text-blue-400">src</span>=<span class="text-emerald-400">"https://cdn.jsdelivr.net/npm/notifications-kd"</span>&gt;&lt;/script&gt;</span>
                                 <button onclick="copyText('<script src=\'https://cdn.jsdelivr.net/npm/notifications-kd\'></script>', this)" class="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity p-2 bg-white/10 hover:bg-white/20 rounded-lg shrink-0 text-slate-300 hover:text-white" aria-label="Copy jsDelivr CDN">
                                     <i data-lucide="copy" class="w-4 h-4"></i>
@@ -526,7 +526,7 @@ copy-paste examples directly into their projects without setup.
                         </div>
                         <div>
                             <p class="text-[10px] sm:text-xs font-normal sm:font-bold text-slate-500 mb-2 ml-4 uppercase tracking-wider">unpkg</p>
-                            <div class="bg-slate-900 text-white p-5 rounded-2xl font-mono text-xs flex items-center justify-between group border border-white/5 overflow-x-auto">
+                            <div class="bg-slate-900 text-white p-5 rounded-2xl font-mono text-sm flex items-center justify-between group border border-white/5 overflow-x-auto">
                                 <span class="whitespace-nowrap pr-4">&lt;script <span class="text-blue-400">src</span>=<span class="text-emerald-400">"https://unpkg.com/notifications-kd"</span>&gt;&lt;/script&gt;</span>
                                 <button onclick="copyText('<script src=\'https://unpkg.com/notifications-kd\'></script>', this)" class="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity p-2 bg-white/10 hover:bg-white/20 rounded-lg shrink-0 text-slate-300 hover:text-white" aria-label="Copy unpkg CDN">
                                     <i data-lucide="copy" class="w-4 h-4"></i>
@@ -553,7 +553,7 @@ copy-paste examples directly into their projects without setup.
                         </div>
                         <div>
                             <p class="text-[10px] sm:text-xs font-normal sm:font-bold text-slate-500 mb-2 ml-4 uppercase tracking-wider">Native Browser ES Module</p>
-                            <div class="bg-slate-900 text-white p-5 rounded-2xl font-mono text-xs flex items-center justify-between group border border-white/5 overflow-x-auto">
+                            <div class="bg-slate-900 text-white p-5 rounded-2xl font-mono text-sm flex items-center justify-between group border border-white/5 overflow-x-auto">
                                 <span class="whitespace-nowrap pr-4"><span class="text-purple-400">import</span> KDNotification <span class="text-purple-400">from</span> <span class="text-emerald-400">"https://cdn.jsdelivr.net/npm/notifications-kd/notifications-kd.js"</span>;</span>
                                 <button onclick="copyText('import KDNotification from \'https://cdn.jsdelivr.net/npm/notifications-kd/notifications-kd.js\';', this)" class="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity p-2 bg-white/10 hover:bg-white/20 rounded-lg shrink-0 text-slate-300 hover:text-white" aria-label="Copy native import">
                                     <i data-lucide="copy" class="w-4 h-4"></i>
@@ -589,7 +589,7 @@ copy-paste examples directly into their projects without setup.
                     <div class="overflow-hidden rounded-2xl border border-black/5 dark:border-white/5 glass overflow-x-auto">
                         <table class="w-full text-left text-sm min-w-[600px]">
                             <thead>
-                                <tr class="bg-black/5 dark:bg-white/5 font-bold uppercase text-[10px] tracking-widest">
+                                <tr class="bg-black/5 dark:bg-white/5 font-bold uppercase text-xs tracking-widest">
                                     <th class="px-6 py-4">Option</th>
                                     <th class="px-6 py-4">Type</th>
                                     <th class="px-6 py-4">Default</th>
@@ -674,7 +674,7 @@ copy-paste examples directly into their projects without setup.
                     <div class="overflow-hidden rounded-2xl border border-black/5 dark:border-white/5 glass overflow-x-auto">
                         <table class="w-full text-left text-sm min-w-[600px]">
                             <thead>
-                                <tr class="bg-black/5 dark:bg-white/5 font-bold uppercase text-[10px] tracking-widest">
+                                <tr class="bg-black/5 dark:bg-white/5 font-bold uppercase text-xs tracking-widest">
                                     <th class="px-6 py-4">Method</th>
                                     <th class="px-6 py-4">Returns</th>
                                     <th class="px-6 py-4">Description</th>
@@ -753,7 +753,7 @@ copy-paste examples directly into their projects without setup.
                     <div class="overflow-hidden rounded-2xl border border-black/5 dark:border-white/5 glass overflow-x-auto">
                         <table class="w-full text-left text-sm min-w-[600px]">
                             <thead>
-                                <tr class="bg-black/5 dark:bg-white/5 font-bold uppercase text-[10px] tracking-widest">
+                                <tr class="bg-black/5 dark:bg-white/5 font-bold uppercase text-xs tracking-widest">
                                     <th class="px-6 py-4">Variable</th>
                                     <th class="px-6 py-4">Default</th>
                                     <th class="px-6 py-4">Description</th>
@@ -761,27 +761,27 @@ copy-paste examples directly into their projects without setup.
                             </thead>
                             <tbody class="divide-y divide-black/5 dark:divide-white/5">
                                 <tr>
-                                    <td class="px-6 py-4 font-mono text-primary text-xs">--kd-toast-anim-duration</td>
+                                    <td class="px-6 py-4 font-mono text-primary">--kd-toast-anim-duration</td>
                                     <td class="px-6 py-4 text-xs font-mono">250ms</td>
                                     <td class="px-6 py-4 text-slate-600 dark:text-slate-400">Enter/leave animation speed (parses both s and ms)</td>
                                 </tr>
                                 <tr>
-                                    <td class="px-6 py-4 font-mono text-primary text-xs">--kd-z-toast</td>
+                                    <td class="px-6 py-4 font-mono text-primary">--kd-z-toast</td>
                                     <td class="px-6 py-4 text-xs font-mono">2147483647</td>
                                     <td class="px-6 py-4 text-slate-600 dark:text-slate-400">Z-index of the toast overlay</td>
                                 </tr>
                                 <tr>
-                                    <td class="px-6 py-4 font-mono text-primary text-xs">--kd-mobile-offset-x</td>
+                                    <td class="px-6 py-4 font-mono text-primary">--kd-mobile-offset-x</td>
                                     <td class="px-6 py-4 text-xs font-mono">12px</td>
                                     <td class="px-6 py-4 text-slate-600 dark:text-slate-400">Horizontal distance from edges on mobile</td>
                                 </tr>
                                 <tr>
-                                    <td class="px-6 py-4 font-mono text-primary text-xs">--kd-mobile-offset-y</td>
+                                    <td class="px-6 py-4 font-mono text-primary">--kd-mobile-offset-y</td>
                                     <td class="px-6 py-4 text-xs font-mono">16px</td>
                                     <td class="px-6 py-4 text-slate-600 dark:text-slate-400">Vertical distance from edges on mobile</td>
                                 </tr>
                                 <tr>
-                                    <td class="px-6 py-4 font-mono text-primary text-xs">--kd-mobile-max-width</td>
+                                    <td class="px-6 py-4 font-mono text-primary">--kd-mobile-max-width</td>
                                     <td class="px-6 py-4 text-xs font-mono">420px</td>
                                     <td class="px-6 py-4 text-slate-600 dark:text-slate-400">Maximum toast width on mobile devices</td>
                                 </tr>
@@ -803,10 +803,10 @@ copy-paste examples directly into their projects without setup.
                 <!-- Brand -->
                 <div class="md:max-w-sm">
                     <div class="flex items-center gap-3 mb-6">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 bg-primary rounded-lg flex items-center justify-center shadow-lg shadow-primary/20">
-                            <i data-lucide="bell" class="text-white w-5 h-5 sm:w-6 sm:h-6"></i>
+                        <div class="w-8 h-8 sm:w-9 sm:h-9 bg-primary rounded-lg flex items-center justify-center shadow-lg shadow-primary/20">
+                            <i data-lucide="bell" class="text-white w-5 h-5"></i>
                         </div>
-                        <span class="font-black text-2xl sm:text-4xl text-slate-900 dark:text-white">KD <span class="text-primary">Notifications</span></span>
+                        <span class="font-black text-2xl sm:text-3xl text-slate-900 dark:text-white">KD <span class="text-primary">Notifications</span></span>
                     </div>
                     <p class="text-sm sm:text-base text-slate-500 leading-relaxed max-w-xl mb-6">A zero-dependency, elegantly designed toast notification library for the modern web. Proudly crafted by KhvichaDev with ❤️ in Georgia.</p>
                     <div class="flex items-center gap-5">
