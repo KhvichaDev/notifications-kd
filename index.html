@@ -1,3 +1,11 @@
+<!--
+KD Notifications | Demo & Documentation
+This file is designed as a standalone, zero-build HTML document.
+The single-file structure is optimized for maximum portability,
+allowing developers to easily inspect the source code and
+copy-paste examples directly into their projects without setup.
+-->
+
 <!DOCTYPE html>
 
 <html lang="en" class="scroll-smooth scroll-pt-10 dark">
@@ -59,11 +67,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://unpkg.com/notifications-kd"></script>
 
     <script>
         tailwind.config = {
@@ -78,6 +84,10 @@
             }
         }
     </script>
+
+    <!-- ========================================== -->
+    <!--                 CSS STYLES                 -->
+    <!-- ========================================== -->
     <style>
         body { font-family: 'Inter', sans-serif; }
 
@@ -107,6 +117,7 @@
         .code-token-string { color: #34d399; }
         .code-token-num { color: #fb923c; }
 
+        /* Custom scrollbars for code blocks. Note: This uses WebKit-specific pseudo-elements and will not apply to Firefox natively. */
         pre::-webkit-scrollbar { width: 6px; height: 6px; }
         pre::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
 
@@ -161,11 +172,11 @@
             transform: translateY(-2px);
             background: rgba(255, 255, 255, 0.08);
         }
-        .light .hero-pill, html:not(.dark) .hero-pill {
+        html:not(.dark) .hero-pill {
             border-color: rgba(15, 23, 42, 0.08);
             background: rgba(15, 23, 42, 0.03);
         }
-        .light .hero-pill:hover, html:not(.dark) .hero-pill:hover {
+        html:not(.dark) .hero-pill:hover {
             background: rgba(15, 23, 42, 0.06);
         }
         .hero-pill .pill-icon {
@@ -185,6 +196,10 @@
             color: #4da6ff;
         }
     </style>
+
+    <!-- ========================================== -->
+    <!--                HTML CONTENT                -->
+    <!-- ========================================== -->
 </head>
 <body class="bg-white dark:bg-dark-900 text-slate-800 dark:text-slate-300 transition-colors duration-300">
 
@@ -210,7 +225,7 @@
                     <i data-lucide="moon" class="block dark:hidden w-5 h-5 text-slate-600"></i>
                 </button>
                 <!-- Mobile Menu Toggle -->
-                <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/5 transition-colors border border-black/5 dark:border-white/5" id="mobile-menu-btn" aria-label="Toggle menu">
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/5 transition-colors border border-black/5 dark:border-white/5" id="mobile-menu-btn" aria-label="Toggle menu" aria-controls="mobile-menu" aria-expanded="false">
                     <i data-lucide="menu" class="w-5 h-5"></i>
                 </button>
                 <a href="https://www.npmjs.com/package/notifications-kd" target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center gap-2 bg-red-500/10 text-red-500 px-4 py-2 rounded-xl text-sm font-bold hover:bg-red-500/20 transition-all border border-red-500/20" aria-label="View on npm">
@@ -254,7 +269,7 @@
                     <i data-lucide="unplug" class="pill-icon"></i> Zero Dependencies
                 </span>
                 <span class="hero-pill text-cyan-600 dark:text-cyan-400">
-                    <i data-lucide="zap" class="pill-icon"></i> <span id="bundle-size-label">gzipped</span>
+                    <i data-lucide="zap" class="pill-icon"></i> <span id="bundle-size-label">~4KB gzipped</span>
                 </span>
                 <span class="hero-pill text-emerald-600 dark:text-emerald-400">
                     <i data-lucide="shield-check" class="pill-icon"></i> XSS Protected
@@ -281,15 +296,15 @@
 
             <!-- Dashboard Preview -->
             <div class="mt-12 sm:mt-20 glass rounded-3xl p-2 max-w-4xl mx-auto shadow-2xl relative fade-in-up">
-                <div class="relative w-full aspect-[16/10] rounded-2xl overflow-hidden shadow-inner bg-slate-900">
-                    <iframe 
-                        class="absolute top-0 left-0 w-full h-full" 
-                        src="https://www.youtube.com/embed/kdg47xX_sU4" 
-                        title="KD Notifications Demo" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        allowfullscreen>
-                    </iframe>
+                <div class="relative w-full aspect-[16/10] rounded-2xl overflow-hidden shadow-inner bg-slate-900" id="yt-container">
+                    <div id="yt-facade" class="absolute inset-0 cursor-pointer group" onclick="loadYouTubeVideo()">
+                        <img src="https://img.youtube.com/vi/kdg47xX_sU4/maxresdefault.jpg" alt="KD Notifications Demo" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-primary/90 rounded-full flex items-center justify-center shadow-lg shadow-primary/30 group-hover:scale-110 group-hover:bg-primary transition-all duration-300">
+                                <i data-lucide="play" class="w-8 h-8 sm:w-10 sm:h-10 text-white ml-1"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -837,9 +852,25 @@
         <i data-lucide="chevron-up" class="w-5 h-5"></i>
     </button>
 
+    <!-- ========================================== -->
+    <!--            JAVASCRIPT LOGIC                -->
+    <!-- ========================================== -->
+    <script src="https://unpkg.com/lucide@0.344.0"></script>
+    <script src="https://unpkg.com/notifications-kd@1.2.0"></script>
     <script>
-        // Set dynamic copyright year
         document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        /**
+         * Replaces the static image facade with an active YouTube iframe.
+         * This lazy-loading technique prevents loading the heavy iframe on initial page load,
+         * significantly improving performance and Core Web Vitals.
+         */
+        function loadYouTubeVideo() {
+            const container = document.getElementById('yt-container');
+            if (container) {
+                container.innerHTML = `<iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/kdg47xX_sU4?autoplay=1" title="KD Notifications Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+            }
+        }
 
         let currentOptions = {
             type: 'success',
@@ -851,20 +882,31 @@
 
         lucide.createIcons();
 
-        /** Page Theme */
         function toggleTheme() {
             document.documentElement.classList.toggle('dark');
         }
 
-        /** Mobile Menu */
+        const mobileMenuEl = document.getElementById('mobile-menu');
+        const mobileMenuBtnEl = document.getElementById('mobile-menu-btn');
+
         function toggleMobileMenu() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        }
-        function closeMobileMenu() {
-            document.getElementById('mobile-menu').classList.add('hidden');
+            if (!mobileMenuEl) return;
+            mobileMenuEl.classList.toggle('hidden');
+            const isExpanded = !mobileMenuEl.classList.contains('hidden');
+            if (mobileMenuBtnEl) mobileMenuBtnEl.setAttribute('aria-expanded', isExpanded);
         }
 
-        /** Playground Theme */
+        function closeMobileMenu() {
+            if (!mobileMenuEl) return;
+            mobileMenuEl.classList.add('hidden');
+            if (mobileMenuBtnEl) mobileMenuBtnEl.setAttribute('aria-expanded', 'false');
+        }
+
+        /**
+         * Updates the active theme for the playground demonstration.
+         * Synchronizes the UI button states and triggers a code view update
+         * to reflect the new configuration parameter.
+         */
         function changePlaygroundTheme(theme) {
             currentOptions.theme = theme;
             document.querySelectorAll('.playground-theme-btn').forEach(btn => {
@@ -874,7 +916,6 @@
             updateCodeView();
         }
 
-        /** Duration Slider */
         function updateDuration(val) {
             const num = parseInt(val, 10);
             currentOptions.duration = num;
@@ -882,12 +923,26 @@
             updateCodeView();
         }
 
-        /** Tracks whether user has manually edited each input since last type-button click */
+        /**
+         * State flags to track user interaction with text inputs.
+         * Prevents default demo text from overwriting user-provided custom text.
+         */
         let userModifiedTitle = false;
         let userModifiedMessage = false;
         let processingTimeout = null;
 
-        /** Syncs custom input fields to currentOptions and refreshes code view */
+        function clearProcessingState() {
+            if (processingTimeout) {
+                clearTimeout(processingTimeout);
+                processingTimeout = null;
+            }
+        }
+
+        /**
+         * Synchronizes the custom text input fields with the active options object.
+         * Dynamically adds or removes the title property based on input presence
+         * to maintain clean configuration output.
+         */
         function syncInputToOptions() {
             const title = document.getElementById('pg-title').value.trim();
             const message = document.getElementById('pg-message').value.trim();
@@ -896,21 +951,14 @@
             updateCodeView();
         }
 
-
-        /** Position Update */
         function updatePos(pos, el) {
             currentOptions.position = pos;
             document.querySelectorAll('.pos-grid-btn').forEach(b => b.classList.remove('active'));
             el.classList.add('active');
             updateCodeView();
 
-            /** Cancel any pending processing timeout */
-            if (processingTimeout) {
-                clearTimeout(processingTimeout);
-                processingTimeout = null;
-            }
+            clearProcessingState();
 
-            /** Show current notification type at the new position */
             if (window.KDNotification) {
                 KDNotification.show({
                     type: currentOptions.type || 'info',
@@ -923,7 +971,6 @@
             }
         }
 
-        /** Demo Data */
         const demoData = {
             success: { type: 'success', message: 'Data synced successfully!' },
             error: { type: 'error', message: 'Connection timed out. Please try again.' },
@@ -943,45 +990,42 @@
             }
         };
 
+        /**
+         * Core playground execution handler.
+         * Merges base demo data with user-defined configurations like duration, text, and position.
+         * Also handles special interactive scenarios like chained notifications for modal resolutions
+         * and simulated asynchronous processes for the processing toast type.
+         */
         function demo(type, btnElement) {
-            /** Update active button styling */
             if (btnElement) {
                 document.querySelectorAll('.type-btn').forEach(btn => btn.classList.remove('active'));
                 btnElement.classList.add('active');
             }
 
             const data = { ...demoData[type] };
-            const duration = parseInt(document.getElementById('pg-duration').value, 10);
             const titleInput = document.getElementById('pg-title');
             const messageInput = document.getElementById('pg-message');
 
-            /** Cancel any pending processing timeout */
-            if (processingTimeout) {
-                clearTimeout(processingTimeout);
-                processingTimeout = null;
-            }
+            clearProcessingState();
 
-            /** Use custom text only if user has manually edited the field AND it's not empty */
             const finalTitle = (userModifiedTitle && titleInput.value.trim()) ? titleInput.value.trim() : (data.title || '');
             const finalMessage = (userModifiedMessage && messageInput.value.trim()) ? messageInput.value.trim() : data.message;
 
             currentOptions = {
                 type: data.type,
                 message: finalMessage,
-                duration: data.duration !== undefined ? data.duration : duration,
+                duration: data.duration !== undefined ? data.duration : currentOptions.duration,
                 position: currentOptions.position,
                 theme: currentOptions.theme
             };
 
             if (finalTitle) currentOptions.title = finalTitle;
 
-            /** Modal needs additional properties */
             if (data.isModal) {
                 currentOptions.isModal = true;
                 currentOptions.buttons = data.buttons;
             }
 
-            /** Update input fields and reset modification flags */
             titleInput.value = finalTitle;
             messageInput.value = finalMessage;
             userModifiedTitle = false;
@@ -1002,7 +1046,6 @@
                     }
                 });
 
-                /** Processing demo auto-closes after 3s */
                 if (type === 'processing') {
                     processingTimeout = setTimeout(() => {
                         KDNotification.close();
@@ -1019,70 +1062,48 @@
             }
         }
 
-        /** Code Highlighter — generates syntax-highlighted HTML for the code viewer */
-        function updateCodeView() {
-            const output = document.getElementById('code-output');
-            let code = `<span class="text-purple-400">KDNotification</span>.<span class="text-blue-400">show</span>({\n`;
+        function generateCodeString(isHtml = false) {
+            let code = isHtml ? `<span class="text-purple-400">KDNotification</span>.<span class="text-blue-400">show</span>({\n` : `KDNotification.show({\n`;
 
-            /** Prevents HTML injection when user input is rendered inside innerHTML */
             const escapeHtml = (str) => String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-
-            Object.entries(currentOptions).forEach(([key, val]) => {
-                if (val === undefined) return;
-
-                let displayVal = val;
-                if (typeof val === 'string') displayVal = `<span class="code-token-string">'${escapeHtml(val)}'</span>`;
-                if (typeof val === 'number') displayVal = `<span class="code-token-num">${val}</span>`;
-                if (typeof val === 'boolean') displayVal = `<span class="text-purple-400">${val}</span>`;
-                if (key === 'buttons') {
-                    let btnCode = `[\n`;
-                    val.forEach((b, i) => {
-                        btnCode += `    { <span class="code-token-key">text</span>: <span class="code-token-string">'${b.text}'</span>, <span class="code-token-key">value</span>: <span class="text-purple-400">${b.value}</span>, <span class="code-token-key">className</span>: <span class="code-token-string">'${b.className}'</span> }`;
-                        btnCode += i < val.length - 1 ? `,\n` : `\n`;
-                    });
-                    btnCode += `  ]`;
-                    displayVal = btnCode;
-                }
-
-                code += `  <span class="code-token-key">${key}</span>: ${displayVal},\n`;
-            });
-
-            /** .then() is only relevant for modal dialogs where the user makes a choice */
-            if (currentOptions.isModal) {
-                code += `})<span class="text-slate-500">.</span><span class="text-blue-400">then</span><span class="text-slate-500">(</span>result <span class="text-slate-500">=></span> <span class="text-slate-500">{</span>\n  <span class="text-purple-400">console</span>.<span class="text-blue-400">log</span><span class="text-slate-500">(</span>result<span class="text-slate-500">);</span> <span class="text-slate-500">// true or false</span>\n<span class="text-slate-500">});</span>`;
-            } else {
-                code += `});`;
-            }
-
-            output.innerHTML = code;
-        }
-
-        /** Generates clean, paste-ready JavaScript — no HTML tags, proper formatting */
-        function generateCleanCode() {
-            let code = `KDNotification.show({\n`;
-
-            /** Escapes single quotes to prevent syntax errors in the generated JS code */
             const escapeJs = (str) => String(str).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
 
             Object.entries(currentOptions).forEach(([key, val]) => {
                 if (val === undefined) return;
 
                 if (key === 'buttons') {
-                    code += `  ${key}: [\n`;
+                    code += isHtml ? `  <span class="code-token-key">${key}</span>: [\n` : `  ${key}: [\n`;
                     val.forEach((b, i) => {
-                        code += `    { text: '${b.text}', value: ${b.value}, className: '${b.className}' }`;
+                        if (isHtml) {
+                            code += `    { <span class="code-token-key">text</span>: <span class="code-token-string">'${escapeHtml(b.text)}'</span>, <span class="code-token-key">value</span>: <span class="text-purple-400">${b.value}</span>, <span class="code-token-key">className</span>: <span class="code-token-string">'${escapeHtml(b.className)}'</span> }`;
+                        } else {
+                            code += `    { text: '${escapeJs(b.text)}', value: ${b.value}, className: '${escapeJs(b.className)}' }`;
+                        }
                         code += i < val.length - 1 ? `,\n` : `\n`;
                     });
                     code += `  ],\n`;
-                } else if (typeof val === 'string') {
-                    code += `  ${key}: '${escapeJs(val)}',\n`;
                 } else {
-                    code += `  ${key}: ${val},\n`;
+                    let displayVal = val;
+                    let displayKey = isHtml ? `<span class="code-token-key">${key}</span>` : key;
+
+                    if (typeof val === 'string') {
+                        displayVal = isHtml ? `<span class="code-token-string">'${escapeHtml(val)}'</span>` : `'${escapeJs(val)}'`;
+                    } else if (typeof val === 'number') {
+                        displayVal = isHtml ? `<span class="code-token-num">${val}</span>` : val;
+                    } else if (typeof val === 'boolean') {
+                        displayVal = isHtml ? `<span class="text-purple-400">${val}</span>` : val;
+                    }
+
+                    code += `  ${displayKey}: ${displayVal},\n`;
                 }
             });
 
             if (currentOptions.isModal) {
-                code += `}).then(result => {\n  console.log(result); // true or false\n});`;
+                if (isHtml) {
+                    code += `})<span class="text-slate-500">.</span><span class="text-blue-400">then</span><span class="text-slate-500">(</span>result <span class="text-slate-500">=></span> <span class="text-slate-500">{</span>\n  <span class="text-purple-400">console</span>.<span class="text-blue-400">log</span><span class="text-slate-500">(</span>result<span class="text-slate-500">);</span> <span class="text-slate-500">// true or false</span>\n<span class="text-slate-500">});</span>`;
+                } else {
+                    code += `}).then(result => {\n  console.log(result); // true or false\n});`;
+                }
             } else {
                 code += `});`;
             }
@@ -1090,16 +1111,32 @@
             return code;
         }
 
+        function updateCodeView() {
+            document.getElementById('code-output').innerHTML = generateCodeString(true);
+        }
+
+        function generateCleanCode() {
+            return generateCodeString(false);
+        }
+
         function copyCode(btn) {
             copyText(generateCleanCode(), btn);
         }
 
-        /** Clipboard — modern API with legacy fallback & visual feedback */
+        function handleCopySuccess(btnElement) {
+            showCopyFeedback();
+            updateButtonState(btnElement);
+        }
+
+        /**
+         * Handles copying text to the user's clipboard.
+         * Uses the modern Clipboard API natively, but falls back to the legacy
+         * document.execCommand approach to ensure compatibility across older environments.
+         */
         function copyText(text, btnElement = null) {
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(text).then(() => {
-                    showCopyFeedback();
-                    updateButtonState(btnElement);
+                    handleCopySuccess(btnElement);
                 });
             } else {
                 const el = document.createElement('textarea');
@@ -1108,30 +1145,26 @@
                 el.select();
                 document.execCommand('copy');
                 document.body.removeChild(el);
-                showCopyFeedback();
-                updateButtonState(btnElement);
+                handleCopySuccess(btnElement);
             }
         }
 
-        /** Swaps button icon visually for 2 seconds */
         function updateButtonState(btnElement) {
             if (!btnElement) return;
             
-            // Check if it's the main copy button which has text next to it
             const hasText = btnElement.querySelector('span');
             const originalHTML = btnElement.innerHTML;
             
-            if (hasText) {
-                btnElement.innerHTML = `<i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> <span class="text-emerald-400">COPIED</span>`;
-            } else {
-                btnElement.innerHTML = `<i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>`;
-            }
+            const checkIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-emerald-400"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
             
-            lucide.createIcons(); // render the new icon
+            if (hasText) {
+                btnElement.innerHTML = `${checkIconSVG} <span class="text-emerald-400">COPIED</span>`;
+            } else {
+                btnElement.innerHTML = checkIconSVG;
+            }
             
             setTimeout(() => {
                 btnElement.innerHTML = originalHTML;
-                lucide.createIcons();
             }, 2000);
         }
 
@@ -1141,59 +1174,66 @@
             }
         }
 
-        /** Scroll Animations via Intersection Observer */
+        /**
+         * Initializes an Intersection Observer to trigger scroll-based entry animations.
+         * Elements receive the visible state class when they cross the 10% viewport threshold.
+         */
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
 
-        /** Scroll event handler for Back to Top Button & Active Menu Link */
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('nav a[href^="#"]');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        let isScrolling = false;
 
         window.addEventListener('scroll', () => {
-            // 1. Back to top button logic
-            const btn = document.getElementById('back-to-top');
-            if (window.scrollY > 400) {
-                btn.classList.remove('hidden-btn');
-            } else {
-                btn.classList.add('hidden-btn');
+            if (!isScrolling) {
+                window.requestAnimationFrame(() => {
+                    const btn = document.getElementById('back-to-top');
+                    if (window.scrollY > 400) {
+                        btn.classList.remove('hidden-btn');
+                    } else {
+                        btn.classList.add('hidden-btn');
+                    }
+
+                    let current = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop;
+                        if (window.scrollY >= (sectionTop - 200)) {
+                            current = section.getAttribute('id');
+                        }
+                    });
+
+                    navLinks.forEach(link => {
+                        link.classList.remove('text-primary');
+                        if (current && link.getAttribute('href') === `#${current}`) {
+                            link.classList.add('text-primary');
+                        }
+                    });
+
+                    mobileNavLinks.forEach(link => {
+                        link.classList.remove('nav-active');
+                        if (current && link.getAttribute('href') === `#${current}`) {
+                            link.classList.add('nav-active');
+                        }
+                    });
+
+                    isScrolling = false;
+                });
+                isScrolling = true;
             }
-
-            // 2. Navigation Active State logic
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (window.scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('text-primary');
-                if (current && link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('text-primary');
-                }
-            });
-
-            /** Mobile menu active state — highlights the entire button, not just text */
-            document.querySelectorAll('.mobile-nav-link').forEach(link => {
-                link.classList.remove('nav-active');
-                if (current && link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('nav-active');
-                }
-            });
         });
 
-        /** Initial render */
         updateCodeView();
 
-        /** Fetches the real gzipped bundle size from bundlephobia and displays it in the hero pill */
         fetch('https://bundlephobia.com/api/size?package=notifications-kd')
             .then(r => r.json())
             .then(data => {
@@ -1204,7 +1244,6 @@
                 document.getElementById('bundle-size-label').textContent = '~4KB gzipped';
             });
 
-        /** Fetches the latest version from npm registry so the badge always stays current */
         fetch('https://registry.npmjs.org/notifications-kd/latest')
             .then(r => r.json())
             .then(data => {
