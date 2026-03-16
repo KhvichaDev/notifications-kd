@@ -1,6 +1,6 @@
 {
   "name": "notifications-kd",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A standalone, ultra-lightweight, responsive & mobile-friendly toast notification system with a modern, elegant UI and zero dependencies.",
   "main": "notifications-kd.js",
   "module": "notifications-kd.js",
@@ -10,7 +10,9 @@
   "files": [
     "notifications-kd.js",
     "notifications-kd.min.js",
-    "index.d.ts"
+    "index.d.ts",
+    "README.md",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "node build.js",
@@ -30,10 +32,14 @@
     "zero-dependency",
     "vanilla-js"
   ],
-  "author": "KhvichaDev",
+  "author": {
+    "name": "KhvichaDev",
+    "email": "khvichadev@gmail.com",
+    "url": "https://khvichadev.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/KhvichaDev/notifications-kd/issues"
   },
-  "homepage": "https://github.com/KhvichaDev/notifications-kd#readme"
+  "homepage": "https://khvichadev.github.io/notifications-kd/"
 }
