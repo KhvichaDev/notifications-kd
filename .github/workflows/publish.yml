@@ -9,15 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      id-token: write # ეს აუცილებელია OIDC-სთვის
+      id-token: write
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          # registry-url აქ აღარ გვჭირდება, რომ .npmrc-მ ტოკენი არ მოგვთხოვოს
 
-      - run: npm ci
-
+      - run: npm install
+      
       - run: npm publish --provenance --access public
