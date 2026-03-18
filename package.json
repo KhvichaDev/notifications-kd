@@ -21,7 +21,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/KhvichaDev/notifications-kd.git"
+    "url": "https://github.com/KhvichaDev/notifications-kd"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "toast",
