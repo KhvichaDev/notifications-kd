@@ -1,3 +1,10 @@
+## [v1.2.3] - 2026-03-26 - Build Automation & Workflow Enhancements
+
+- Added fully automated `npm-trusted-publisher` GitHub Actions workflow for zero-config NPM publishing with provenance.
+- Updated the [build.js](cci:7://file:///c:/Users/mylaptop.ge/Downloads/KD%20Notifications/notifications-kd/build.js:0:0-0:0) script to automatically sync and inject the latest package version into the [index.html](cci:7://file:///c:/Users/mylaptop.ge/Downloads/KD%20Notifications/notifications-kd/index.html:0:0-0:0) documentation file.
+- Eliminated the need for manual version bumps in static HTML files (covering both Schema.org JSON-LD and unpkg CDN paths).
+
+
 ## [v1.2.2] - 2026-03-26 - Documentation Page Polish & Cleanup
 
 - Redesigned all code blocks in the Quick Start Guide section with improved layout and visual consistency.
