@@ -1,3 +1,12 @@
+## [v1.2.2] - 2026-03-26 - Documentation Page Polish & Cleanup
+
+- Redesigned all code blocks in the Quick Start Guide section with improved layout and visual consistency.
+- Copy buttons now use absolute positioning, preventing layout shifts on horizontal scroll.
+- Added dedicated overflow-x-auto containers with reserved padding for copy buttons.
+- Refined code block styling with subtle borders, shadows, and hover states for a more polished look.
+- Removed the unused default `test` script placeholder from package.json.
+
+
 # Changelog
 
 ## v1.2.1 (17/03/2026) - Package Metadata & Supply Chain Improvements
