@@ -16,15 +16,11 @@
   ],
   "scripts": {
     "build": "node build.js",
-    "prepublishOnly": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/KhvichaDev/notifications-kd"
-  },
-  "publishConfig": {
-    "access": "public"
+    "url": "https://github.com/KhvichaDev/notifications-kd.git"
   },
   "keywords": [
     "toast",
