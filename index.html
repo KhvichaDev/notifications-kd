@@ -503,9 +503,11 @@ copy-paste examples directly into their projects without setup.
                     <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
                         <i data-lucide="package" class="text-primary w-5 h-5"></i> NPM (Recommended)
                     </h3>
-                    <div class="bg-slate-900 text-white p-6 rounded-2xl font-mono text-sm flex items-center justify-between group">
-                        <span>npm install <span class="text-primary">notifications-kd</span></span>
-                        <button onclick="copyText('npm install notifications-kd', this)" class="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity p-2 bg-white/10 rounded-lg text-slate-300 hover:text-white" aria-label="Copy npm command"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                    <div class="relative bg-slate-900 text-white rounded-2xl font-mono text-sm group border border-white/5">
+                        <div class="overflow-x-auto p-6 pr-16">
+                            <span class="whitespace-nowrap">npm install <span class="text-primary">notifications-kd</span></span>
+                        </div>
+                        <button onclick="copyText('npm install notifications-kd', this)" class="absolute top-1/2 -translate-y-1/2 right-4 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all p-2 bg-slate-800 hover:bg-slate-700 border border-white/10 rounded-lg text-slate-300 hover:text-white shadow-lg z-10" aria-label="Copy npm command"><i data-lucide="copy" class="w-4 h-4"></i></button>
                     </div>
                 </div>
 
@@ -517,18 +519,22 @@ copy-paste examples directly into their projects without setup.
                     <div class="space-y-4">
                         <div>
                             <p class="text-[10px] sm:text-xs font-normal sm:font-bold text-slate-500 mb-2 ml-4 uppercase tracking-wider">jsDelivr</p>
-                            <div class="bg-slate-900 text-white p-5 rounded-2xl font-mono text-sm flex items-center justify-between group border border-white/5 overflow-x-auto">
-                                <span class="whitespace-nowrap pr-4">&lt;script <span class="text-blue-400">src</span>=<span class="text-emerald-400">"https://cdn.jsdelivr.net/npm/notifications-kd"</span>&gt;&lt;/script&gt;</span>
-                                <button onclick="copyText('<script src=\'https://cdn.jsdelivr.net/npm/notifications-kd\'></script>', this)" class="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity p-2 bg-white/10 hover:bg-white/20 rounded-lg shrink-0 text-slate-300 hover:text-white" aria-label="Copy jsDelivr CDN">
+                            <div class="relative bg-slate-900 text-white rounded-2xl font-mono text-sm group border border-white/5">
+                                <div class="overflow-x-auto p-5 pr-16">
+                                    <span class="whitespace-nowrap">&lt;script <span class="text-blue-400">src</span>=<span class="text-emerald-400">"https://cdn.jsdelivr.net/npm/notifications-kd"</span>&gt;&lt;/script&gt;</span>
+                                </div>
+                                <button onclick="copyText('<script src=\'https://cdn.jsdelivr.net/npm/notifications-kd\'></script>', this)" class="absolute top-1/2 -translate-y-1/2 right-3 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all p-2 bg-slate-800 hover:bg-slate-700 border border-white/10 rounded-lg text-slate-300 hover:text-white shadow-lg z-10" aria-label="Copy jsDelivr CDN">
                                     <i data-lucide="copy" class="w-4 h-4"></i>
                                 </button>
                             </div>
                         </div>
                         <div>
                             <p class="text-[10px] sm:text-xs font-normal sm:font-bold text-slate-500 mb-2 ml-4 uppercase tracking-wider">unpkg</p>
-                            <div class="bg-slate-900 text-white p-5 rounded-2xl font-mono text-sm flex items-center justify-between group border border-white/5 overflow-x-auto">
-                                <span class="whitespace-nowrap pr-4">&lt;script <span class="text-blue-400">src</span>=<span class="text-emerald-400">"https://unpkg.com/notifications-kd"</span>&gt;&lt;/script&gt;</span>
-                                <button onclick="copyText('<script src=\'https://unpkg.com/notifications-kd\'></script>', this)" class="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity p-2 bg-white/10 hover:bg-white/20 rounded-lg shrink-0 text-slate-300 hover:text-white" aria-label="Copy unpkg CDN">
+                            <div class="relative bg-slate-900 text-white rounded-2xl font-mono text-sm group border border-white/5">
+                                <div class="overflow-x-auto p-5 pr-16">
+                                    <span class="whitespace-nowrap">&lt;script <span class="text-blue-400">src</span>=<span class="text-emerald-400">"https://unpkg.com/notifications-kd"</span>&gt;&lt;/script&gt;</span>
+                                </div>
+                                <button onclick="copyText('<script src=\'https://unpkg.com/notifications-kd\'></script>', this)" class="absolute top-1/2 -translate-y-1/2 right-3 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all p-2 bg-slate-800 hover:bg-slate-700 border border-white/10 rounded-lg text-slate-300 hover:text-white shadow-lg z-10" aria-label="Copy unpkg CDN">
                                     <i data-lucide="copy" class="w-4 h-4"></i>
                                 </button>
                             </div>
@@ -544,18 +550,22 @@ copy-paste examples directly into their projects without setup.
                     <div class="space-y-4">
                         <div>
                             <p class="text-[10px] sm:text-xs font-normal sm:font-bold text-slate-500 mb-2 ml-4 uppercase tracking-wider">Modern bundlers (Webpack, Vite, React, Vue)</p>
-                            <div class="bg-slate-900 text-white p-5 rounded-2xl font-mono text-sm flex items-center justify-between group border border-white/5 overflow-x-auto">
-                                <span class="whitespace-nowrap pr-4"><span class="text-purple-400">import</span> KDNotification <span class="text-purple-400">from</span> <span class="text-emerald-400">"notifications-kd"</span>;</span>
-                                <button onclick="copyText('import KDNotification from \'notifications-kd\';', this)" class="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity p-2 bg-white/10 hover:bg-white/20 rounded-lg shrink-0 text-slate-300 hover:text-white" aria-label="Copy bundler import">
+                            <div class="relative bg-slate-900 text-white rounded-2xl font-mono text-sm group border border-white/5">
+                                <div class="overflow-x-auto p-5 pr-16">
+                                    <span class="whitespace-nowrap"><span class="text-purple-400">import</span> KDNotification <span class="text-purple-400">from</span> <span class="text-emerald-400">"notifications-kd"</span>;</span>
+                                </div>
+                                <button onclick="copyText('import KDNotification from \'notifications-kd\';', this)" class="absolute top-1/2 -translate-y-1/2 right-3 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all p-2 bg-slate-800 hover:bg-slate-700 border border-white/10 rounded-lg text-slate-300 hover:text-white shadow-lg z-10" aria-label="Copy bundler import">
                                     <i data-lucide="copy" class="w-4 h-4"></i>
                                 </button>
                             </div>
                         </div>
                         <div>
                             <p class="text-[10px] sm:text-xs font-normal sm:font-bold text-slate-500 mb-2 ml-4 uppercase tracking-wider">Native Browser ES Module</p>
-                            <div class="bg-slate-900 text-white p-5 rounded-2xl font-mono text-sm flex items-center justify-between group border border-white/5 overflow-x-auto">
-                                <span class="whitespace-nowrap pr-4"><span class="text-purple-400">import</span> KDNotification <span class="text-purple-400">from</span> <span class="text-emerald-400">"https://cdn.jsdelivr.net/npm/notifications-kd/notifications-kd.js"</span>;</span>
-                                <button onclick="copyText('import KDNotification from \'https://cdn.jsdelivr.net/npm/notifications-kd/notifications-kd.js\';', this)" class="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity p-2 bg-white/10 hover:bg-white/20 rounded-lg shrink-0 text-slate-300 hover:text-white" aria-label="Copy native import">
+                            <div class="relative bg-slate-900 text-white rounded-2xl font-mono text-sm group border border-white/5">
+                                <div class="overflow-x-auto p-5 pr-16">
+                                    <span class="whitespace-nowrap"><span class="text-purple-400">import</span> KDNotification <span class="text-purple-400">from</span> <span class="text-emerald-400">"https://cdn.jsdelivr.net/npm/notifications-kd/notifications-kd.js"</span>;</span>
+                                </div>
+                                <button onclick="copyText('import KDNotification from \'https://cdn.jsdelivr.net/npm/notifications-kd/notifications-kd.js\';', this)" class="absolute top-1/2 -translate-y-1/2 right-3 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all p-2 bg-slate-800 hover:bg-slate-700 border border-white/10 rounded-lg text-slate-300 hover:text-white shadow-lg z-10" aria-label="Copy native import">
                                     <i data-lucide="copy" class="w-4 h-4"></i>
                                 </button>
                             </div>
@@ -568,10 +578,8 @@ copy-paste examples directly into their projects without setup.
                     <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
                         <i data-lucide="play" class="text-primary w-5 h-5"></i> Basic Usage
                     </h3>
-                    <div class="group relative bg-[#0d1117] text-white p-8 rounded-2xl font-mono text-sm leading-relaxed overflow-x-auto pr-16 shadow-xl border border-white/5">
-                        <button onclick="copyText('KDNotification.show({\n  type: \'success\',\n  title: \'Profile Updated\',\n  message: \'Your changes have been saved.\',\n  duration: 4000,\n  position: \'top-right\'\n});', this)" class="absolute top-6 right-6 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity p-2 bg-white/10 hover:bg-white/20 rounded-lg text-slate-400 hover:text-white" aria-label="Copy Basic Usage code">
-                            <i data-lucide="copy" class="w-4 h-4"></i>
-                        </button>
+                    <div class="group relative bg-[#0d1117] text-white rounded-2xl font-mono text-sm leading-relaxed shadow-xl border border-white/5">
+                        <div class="overflow-x-auto p-8 pr-16">
 <pre><span class="text-slate-500">// No extra CSS required! Styles are auto-injected.</span>
 <span class="text-purple-400">KDNotification</span>.<span class="text-blue-400">show</span>({
   <span class="text-blue-400">type</span>: <span class="text-emerald-400">'success'</span>,
@@ -580,6 +588,10 @@ copy-paste examples directly into their projects without setup.
   <span class="text-blue-400">duration</span>: <span class="text-orange-400">4000</span>,
   <span class="text-blue-400">position</span>: <span class="text-emerald-400">'top-right'</span>
 });</pre>
+                        </div>
+                        <button onclick="copyText('KDNotification.show({\n  type: \'success\',\n  title: \'Profile Updated\',\n  message: \'Your changes have been saved.\',\n  duration: 4000,\n  position: \'top-right\'\n});', this)" class="absolute top-6 right-6 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all p-2 bg-slate-800 hover:bg-slate-700 border border-white/10 rounded-lg text-slate-400 hover:text-white shadow-lg z-10" aria-label="Copy Basic Usage code">
+                            <i data-lucide="copy" class="w-4 h-4"></i>
+                        </button>
                     </div>
                 </div>
 
@@ -917,6 +929,15 @@ copy-paste examples directly into their projects without setup.
             mobileMenuEl.classList.add('hidden');
             if (mobileMenuBtnEl) mobileMenuBtnEl.setAttribute('aria-expanded', 'false');
         }
+
+        document.addEventListener('click', (event) => {
+            const isClickInsideMenu = mobileMenuEl?.contains(event.target);
+            const isClickOnBtn = mobileMenuBtnEl?.contains(event.target);
+            
+            if (!isClickInsideMenu && !isClickOnBtn && mobileMenuEl && !mobileMenuEl.classList.contains('hidden')) {
+                closeMobileMenu();
+            }
+        });
 
         /**
          * Updates the active theme for the playground demonstration.
